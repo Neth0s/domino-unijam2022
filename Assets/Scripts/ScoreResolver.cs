@@ -92,20 +92,19 @@ public class ScoreResolver : MonoBehaviour
         float distanceDelta = domino.Distance - lastDistance;
         if (currentDistanceCombo != 0f) score += distanceDelta;
         currentDistanceCombo += distanceDelta;
-        Debug.Log("CorrectDominoFall");
     }
 
     private void OnNotGoodColorDominoFall(Domino domino)
     {
         currentDistanceCombo = 0f;
-        Debug.Log("NotGoodColorDominoFall");
+        Debug.Log("Wrong color");
     }
 
     private void OnBadDominoFall()
     {
         currentDistanceCombo = 0f;
         score *= errorScoreMultiplier;
-        Debug.Log("BadDominoFall");
+        Debug.Log("Bad fall");
 
         lastDominoIndex++;
     }

@@ -1093,6 +1093,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3620057964878819704, guid: a849a08a41ede6d4f9a17f87190cae44, type: 3}
+      propertyPath: pathDrawer
+      value: 
+      objectReference: {fileID: 3675498087106151813}
+    - target: {fileID: 3620057964878819704, guid: a849a08a41ede6d4f9a17f87190cae44, type: 3}
       propertyPath: dominosParent
       value: 
       objectReference: {fileID: 6674188975577649133}
@@ -1188,6 +1192,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55fd212b92dca347a5ceb4db0584a97, type: 3}
+--- !u!114 &3675498087106151813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8703186420362937323, guid: e55fd212b92dca347a5ceb4db0584a97, type: 3}
+  m_PrefabInstance: {fileID: 5460073559628678766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675498087106151864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e837b25dc31d673479c62ddd77d1d88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3675498087106151814 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8703186420362937320, guid: e55fd212b92dca347a5ceb4db0584a97, type: 3}
