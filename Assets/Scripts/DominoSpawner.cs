@@ -14,10 +14,22 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
     [SerializeField] private CinemachineDollyCart dollyCart;
 
+    [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
+
+    [SerializeField] int dominoIndex = 0;
+
+
     private float currentTimeBetweenDominos = Mathf.Infinity;
     Controls controls;
     private List<float> distances;
     private List<int> colors;
+
+    CinemachineDollyCart dollyCart;
+
+    private void Awake()
+    {
+        dollyCart = GetComponent<CinemachineDollyCart>();
+    }
 
     private void OnEnable()
     {
@@ -52,17 +64,21 @@ public class DominoSpawner : MonoBehaviour
     }
     private void Spawn(int prefabIndex)
     {
+        Debug.Log("Hello");
         if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
             return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
-            Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position, spawnPoint.rotation);
+            var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
             distances.Add(dollyCart.m_Position);
             colors.Add(prefabIndex);
             if (dominosCountsTexts.Count > prefabIndex)
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
+
+            dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position);
+            dominoIndex++;
         }
     }
 }
