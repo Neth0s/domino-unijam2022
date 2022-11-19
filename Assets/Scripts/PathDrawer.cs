@@ -81,9 +81,9 @@ public class PathDrawer : MonoBehaviour
             lineRenderers.Add(currentLine);
         }
 
-        foreach (var lineRendererToEnable in lineRenderers)
+        foreach (var line in lineRenderers)
         {
-            lineRendererToEnable.enabled = true;
+            line.enabled = true;
         }
 
         Debug.Log("Line renderer updated !");

@@ -426,6 +426,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1801004743714905700, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
+      propertyPath: dominosCounts.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2062415545436517090, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_IsActive
       value: 0
