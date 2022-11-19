@@ -67,17 +67,21 @@ public class ScoreResolver : MonoBehaviour
         lastDominoIndex = domino.Index;
     }
 
-    private void OnBadDominoFall()
-    {
-        Debug.Log("Bad domino has fallen");
-        score *= multiplicativeCoefficientOnFault;
-    }
-
     private void OnRightDominoFall(float distanceDelta)
     {
         Debug.Log("Right domino has fallen");
-        currentDistanceCombo = distanceDelta;
-        score += distanceDelta;
+        if(currentDistanceCombo != 0f)
+        {
+            score += distanceDelta;
+        }
+        currentDistanceCombo += distanceDelta;
+    }
+
+    private void OnBadDominoFall()
+    {
+        Debug.Log("Bad domino has fallen");
+        currentDistanceCombo = 0f;
+        score *= multiplicativeCoefficientOnFault;
     }
 
     private void Update()
@@ -117,6 +121,7 @@ public class ScoreResolver : MonoBehaviour
                 clock = maxTimeBetweenFalls;
                 Debug.Log("Found domino " + i.ToString() + " that can fall. Fault.");
                 Debug.Log("Score: " + score.ToString());
+                currentDistanceCombo = 0f;
                 Showdown(i);
                 return;
             }
