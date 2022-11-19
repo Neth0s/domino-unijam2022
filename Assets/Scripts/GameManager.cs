@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int nextLevelIndex = 0;
     private EndMenu endMenu;
 
+    private bool gameEnded = false;
     private Fader fader;
 
     public static GameManager Instance;
@@ -41,10 +42,19 @@ public class GameManager : MonoBehaviour
         fixedCamera.Priority = 20;
     }
 
-    public void ShowEndMenu()
+    public void ShowEndMenu(int expressionIndex)
     {
+        if (gameEnded)
+            return;
+        gameEnded = true;
+        StartCoroutine(ShowEndMenuRoutine(expressionIndex));
+    }
+
+    private IEnumerator ShowEndMenuRoutine(int expressionIndex)
+    {
+        yield return new WaitForSeconds(1f);
         endMenu.gameObject.SetActive(true);
-        endMenu.ShowResult(0);
+        endMenu.ShowResult(expressionIndex);
     }
 
     public void TryAgain()

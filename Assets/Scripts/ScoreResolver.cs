@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreResolver : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class ScoreResolver : MonoBehaviour
     [SerializeField] GameObject dominosParent;
     [SerializeField] GameObject button;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] Image girlExpressionImage;
 
     [Header ("Parameters")]
     [SerializeField] float maxTimeBetweenFalls = 1f;
     [SerializeField] float errorScoreMultiplier = 0.5f;
     [SerializeField] float showdownTorque = 100f;
     [SerializeField] Vector4 expressionThreshold = new Vector4(10, 20, 30, 40);
+    [SerializeField] private List<Sprite> faceExpressions;
     static public Action OnStartScoreResolution;
 
     bool[] fallenDominosTags;
@@ -85,6 +88,17 @@ public class ScoreResolver : MonoBehaviour
         else OnBadDominoFall();
 
         lastDominoIndex = domino.Index;
+        if (score < expressionThreshold.x)
+            girlExpressionImage.sprite = faceExpressions[0];
+        else if (score < expressionThreshold.y)
+            girlExpressionImage.sprite = faceExpressions[1];
+        else if (score < expressionThreshold.z)
+            girlExpressionImage.sprite = faceExpressions[2];
+        else if (score < expressionThreshold.w)
+            girlExpressionImage.sprite = faceExpressions[3];
+        else
+            girlExpressionImage.sprite = faceExpressions[4];
+
     }
 
     private void OnCorrectDominoFall(Domino domino)
