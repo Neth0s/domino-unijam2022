@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class DominoSpawner : MonoBehaviour
 {
-    [SerializeField] float distanceBetweenDominos = 1;
+    [SerializeField] float speed = 0.3f;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private List<GameObject> dominoPrefabs;
     [SerializeField] private List<int> dominosCounts;
@@ -19,8 +19,11 @@ public class DominoSpawner : MonoBehaviour
 
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
-
     Controls controls;
+    private List<float> distances;
+    private List<int> colors;
+    private int dominosRemaining = 0;
+    private bool dollyCartStarted = false;
 
     CinemachineDollyCart dollyCart;
 
@@ -28,11 +31,15 @@ public class DominoSpawner : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < dominosCounts.Count; i++)
+            dominosRemaining += dominosCounts[i];
         dollyCart = GetComponent<CinemachineDollyCart>();
     }
 
     private void OnEnable()
     {
+        distances = new List<float>();
+        colors = new List<int>();
         if (dominoPrefabs.Count != dominosCounts.Count)
         {
             Debug.Log("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
@@ -62,6 +69,11 @@ public class DominoSpawner : MonoBehaviour
     }
     private void Spawn(int prefabIndex)
     {
+        if (!dollyCartStarted)
+        {
+            dollyCartStarted = true;
+            dollyCart.m_Speed = speed;
+        }
         if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
             return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
@@ -69,11 +81,22 @@ public class DominoSpawner : MonoBehaviour
             var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation, dominosParent.transform);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
+            dominosRemaining -= 1;
+            distances.Add(dollyCart.m_Position);
+            colors.Add(prefabIndex);
             if (dominosCountsTexts.Count > prefabIndex)
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
 
             dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position);
             dominoIndex++;
         }
+        if (dominosRemaining <= 0)
+            PlacingPhaseFinished();
+    }
+
+    private void PlacingPhaseFinished()
+    {
+        GameManager.Instance.SwitchToShowdownPhase();
+        Destroy(gameObject);
     }
 }
