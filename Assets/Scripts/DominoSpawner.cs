@@ -28,6 +28,7 @@ public class DominoSpawner : MonoBehaviour
     CinemachineDollyCart dollyCart;
 
     [SerializeField] GameObject dominosParent;
+    [SerializeField] PathDrawer pathDrawer;
 
     private void Awake()
     {
@@ -96,7 +97,9 @@ public class DominoSpawner : MonoBehaviour
             if (dominosCountsTexts.Count > prefabIndex)
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
 
-            dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position);
+            Debug.Log("MaxPos" + dollyCart.m_Path.PathLength);
+            Debug.Log("NormalizedPosition" + dollyCart.m_Position / dollyCart.m_Path.PathLength);
+            dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position, dollyCart.m_Position / dollyCart.m_Path.PathLength, pathDrawer);
             dominoIndex++;
         }
         
