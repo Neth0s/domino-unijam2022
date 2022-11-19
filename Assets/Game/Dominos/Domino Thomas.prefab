@@ -62,7 +62,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
   m_PrefabInstance: {fileID: 6186763688761569368}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-2136608191171446912
+--- !u!114 &6623467842389052706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4540919278695510398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbe7e5c39d94d44fb42be9f69f27199, type: 3}
+  m_Script: {fileID: 11500000, guid: 78630871ee29fea438b5daab1c1d1b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fallHeightThreshold: 0.01
+  OnFallUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []

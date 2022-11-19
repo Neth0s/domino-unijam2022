@@ -12,7 +12,7 @@ public class Domino : MonoBehaviour
     [SerializeField] float fallHeightThreshold = 0.01f;
     float initialHeight;
 
-    public static Action<int> OnFall;
+    public static Action<Domino> OnFall;
     [SerializeField] UnityEvent OnFallUnityEvent;
 
     public bool HasFallen { get; private set; }
@@ -23,9 +23,14 @@ public class Domino : MonoBehaviour
         Distance = distance;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
-        SetInitialPosition();
+        ScoreResolver.OnStartScoreResolution += HandleStartScoreResolution;
+    }
+
+    private void OnDisable()
+    {
+        ScoreResolver.OnStartScoreResolution -= HandleStartScoreResolution;
     }
 
     public void SetInitialPosition()
@@ -33,12 +38,18 @@ public class Domino : MonoBehaviour
         initialHeight = transform.position.y;
     }
 
+    public void HandleStartScoreResolution()
+    {
+        SetInitialPosition();
+    }
+
     private void Update()
     {
         if(!HasFallen && CheckForFall())
         {
+            Debug.Log("OnFall");
             HasFallen = true;
-            OnFall?.Invoke(Index);
+            OnFall?.Invoke(this);
             OnFallUnityEvent?.Invoke();
         }
     }

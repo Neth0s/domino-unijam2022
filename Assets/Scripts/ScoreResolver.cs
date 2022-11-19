@@ -5,12 +5,23 @@ using UnityEngine;
 
 public class ScoreResolver : MonoBehaviour
 {
-    [SerializeField] int score;
+    [SerializeField] float score;
 
     [SerializeField] float clock = 0;
     [SerializeField] float maxTimeBetweenFalls = 1f;
 
+    static public Action OnStartScoreResolution;
+
     bool isResolving = false;
+
+    int lastDominoIndex = -1;
+    float lastDistance = 0f;
+    float currentDistanceCombo = 0f;
+
+    private void Awake()
+    {
+        StartScoreResolution();
+    }
 
     private void OnEnable()
     {
@@ -22,33 +33,61 @@ public class ScoreResolver : MonoBehaviour
         Domino.OnFall -= HandleFall;
     }
 
-    private void HandleFall(int index)
+    private void HandleFall(Domino domino)
     {
         if (!isResolving) return;
 
         clock = maxTimeBetweenFalls;
 
-        UpdateScore(index);
+        UpdateScore(domino);
     }
 
-    private void UpdateScore(int index)
+    private void UpdateScore(Domino domino)
     {
+        if(domino.Index == lastDominoIndex + 1)
+        {
+            float distanceDelta = domino.Distance - lastDistance;
+            OnRightDominoFall(distanceDelta);
+        }
+        else
+        {
+            OnBadDominoFall();
+        }
 
+        Debug.Log("Score: " + score.ToString() + " Current Distance Combo: " + currentDistanceCombo.ToString());
+
+        lastDominoIndex = domino.Index;
+    }
+
+    private void OnBadDominoFall()
+    {
+        currentDistanceCombo = 0f;
+    }
+
+    private void OnRightDominoFall(float distanceDelta)
+    {
+        currentDistanceCombo = distanceDelta;
+        score += distanceDelta;
     }
 
     private void Update()
     {
-        clock -= Time.deltaTime;
-
-        if(isResolving && clock <= 0)
+        if(isResolving)
         {
-            StopScoreResolution();
+            clock -= Time.deltaTime;
+
+            if (clock <= 0)
+            {
+                StopScoreResolution();
+            }
         }
     }
 
     public void StartScoreResolution()
     {
         isResolving = true;
+
+        OnStartScoreResolution();
     }
 
     private void StopScoreResolution()

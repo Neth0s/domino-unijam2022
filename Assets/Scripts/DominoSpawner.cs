@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class DominoSpawner : MonoBehaviour
 {
@@ -14,10 +15,19 @@ public class DominoSpawner : MonoBehaviour
 
     [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
 
+    [SerializeField] int dominoIndex = 0;
+
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
 
     Controls controls;
+
+    CinemachineDollyCart dollyCart;
+
+    private void Awake()
+    {
+        dollyCart = GetComponent<CinemachineDollyCart>();
+    }
 
     private void OnEnable()
     {
@@ -55,11 +65,14 @@ public class DominoSpawner : MonoBehaviour
             return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
-            Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
+            var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
             if (dominosCountsTexts.Count > prefabIndex)
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
+
+            dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position);
+            dominoIndex++;
         }
     }
 }
