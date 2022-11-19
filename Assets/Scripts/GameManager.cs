@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
         constructionMenu.SetActive(false);
         fallMenu.SetActive(true);
 
-
         followCamera.Priority = 10;
         fixedCamera.Priority = 20;
     }

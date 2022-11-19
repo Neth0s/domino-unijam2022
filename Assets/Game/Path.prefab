@@ -134,7 +134,10 @@ MonoBehaviour:
   lineRenderer: {fileID: 8703186421596154094}
   dollyCart: {fileID: 8703186420061583644}
   points: 100
-  offset: {x: 0, y: -0.067, z: 0}
+  offset: {x: 0, y: -0.0099, z: 0}
+  lineRendererPrefab: {fileID: 8703186421596154094}
+  lineRenderers: []
+  colorCoefs: []
 --- !u!1 &8703186421596154092
 GameObject:
   m_ObjectHideFlags: 0
