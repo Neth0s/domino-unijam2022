@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f11b15c09888ef143b5e1f573ccb04f8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Zyzol
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 161a6c7bd2e25b84cb8f58c20d90e9bf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
