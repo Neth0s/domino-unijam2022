@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DominoPoseDetection : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] UnityEvent OnDominoPose;
 
     private void OnCollisionEnter(Collision collision)
     {
-        audioSource.Play();
+        OnDominoPose?.Invoke();
         Destroy(this);
     }
 }
