@@ -15,7 +15,7 @@ public class DominoSpawner : MonoBehaviour
 
     [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
 
-    [SerializeField] int dominoIndex = 0;
+    private int dominoIndex = 0;
 
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
@@ -42,12 +42,13 @@ public class DominoSpawner : MonoBehaviour
         colors = new List<int>();
         if (dominoPrefabs.Count != dominosCounts.Count)
         {
-            Debug.Log("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
+            Debug.LogWarning("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
         }
         for (int i = 0; i < Mathf.Min(dominosCountsTexts.Count, dominosCounts.Count); i++)
         {
             dominosCountsTexts[i].text = dominosCounts[i].ToString();
         }
+
         controls = new Controls();
         controls.Player.Enable();
         controls.Player.PlaceColor1.performed += ctx => Spawn(0);
@@ -55,6 +56,7 @@ public class DominoSpawner : MonoBehaviour
         controls.Player.PlaceColor3.performed += ctx => Spawn(2);
         controls.Player.PlaceColor4.performed += ctx => Spawn(3);
     }
+
     private void OnDisable()
     {
         controls.Player.Disable();
@@ -63,10 +65,12 @@ public class DominoSpawner : MonoBehaviour
         controls.Player.PlaceColor3.performed -= ctx => Spawn(2);
         controls.Player.PlaceColor4.performed -= ctx => Spawn(3);
     }
+
     private void Update()
     {
         currentTimeBetweenDominos += Time.deltaTime;
     }
+
     private void Spawn(int prefabIndex)
     {
         if (!dollyCartStarted)

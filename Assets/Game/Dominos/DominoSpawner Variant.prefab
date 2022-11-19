@@ -77,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
       propertyPath: m_Name
-      value: DominoSpawner
+      value: DominoSpawner Variant
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7700973727457296673, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
@@ -103,12 +103,15 @@ MonoBehaviour:
   speed: 0.3
   spawnPoint: {fileID: 8223905556379656004}
   dominoPrefabs:
-  - {fileID: 4540919278695510398, guid: 3b4b7dfd3c006014aaeb471ab5a4747c, type: 3}
-  dominosCounts: 0a000000
-  minTimeBetweenDominos: 0.1
-  dominosCountsTexts: []
+  - {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
+  dominosCounts: 32000000
+  minTimeBetweenDominos: 0.15
+  dominosCountsTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnOffset: {x: 0, y: 0.3, z: 0}
-  dominoIndex: 0
   dominosParent: {fileID: 0}
 --- !u!114 &6674188975392754926
 MonoBehaviour:
