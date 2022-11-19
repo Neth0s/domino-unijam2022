@@ -131,10 +131,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e837b25dc31d673479c62ddd77d1d88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 8703186421596154094}
+  lineRenderer: {fileID: 8645875016601798006, guid: ef30d4093342fdf4db12a91930502a18, type: 3}
   dollyCart: {fileID: 8703186420061583644}
   points: 100
-  offset: {x: 0, y: -0.067, z: 0}
+  offset: {x: 0, y: -0.0099, z: 0}
+  lineRendererPrefab: {fileID: 8645875016601798006, guid: ef30d4093342fdf4db12a91930502a18, type: 3}
+  lineRenderers: []
+  colorCoefficients:
+  - color: {r: 1, g: 0, b: 0, a: 0.5019608}
+    coefficient: 0.05
+  - color: {r: 0, g: 0.1562562, b: 1, a: 0.5019608}
+    coefficient: 0.05
+  - color: {r: 0.023640517, g: 0.6698113, b: 0, a: 0.5019608}
+    coefficient: 0.45
+  - color: {r: 1, g: 0.8289714, b: 0, a: 0.5019608}
+    coefficient: 0.45
 --- !u!1 &8703186421596154092
 GameObject:
   m_ObjectHideFlags: 0
