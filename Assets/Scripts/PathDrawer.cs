@@ -10,6 +10,8 @@ public class PathDrawer : MonoBehaviour
     [SerializeField] private CinemachineDollyCart dollyCart;
     [SerializeField] private int points = 100;
 
+    [SerializeField] private Vector3 offset;
+
     public void Start() => StartCoroutine(DrawCoroutine());
 
     private IEnumerator DrawCoroutine()
@@ -27,7 +29,7 @@ public class PathDrawer : MonoBehaviour
 
             dollyCart.m_Position = pos;
             yield return new WaitForEndOfFrame();
-            lineRenderer.SetPosition(i, dollyCart.transform.position);
+            lineRenderer.SetPosition(i, dollyCart.transform.position + offset);
             pos += segment;
         }
 
