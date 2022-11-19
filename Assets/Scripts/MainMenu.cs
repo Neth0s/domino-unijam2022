@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class Level
 {
     public int sceneId;
-    public Image image;
+    public Sprite sprite;
 }
 
 public class MainMenu : MonoBehaviour
@@ -15,6 +16,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private List<Level> levels;
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
+    [SerializeField] private Image image;
     private int currentLevelId = 0;
     private void Start()
     {
@@ -35,15 +37,17 @@ public class MainMenu : MonoBehaviour
     public void OpenLevelSelect()
     {
         currentLevelId = 0;
+        leftArrow.SetActive(false);
+        UpdateUI();
     }
 
     public void ChangeLevel(int diff)
     {
         currentLevelId += diff;
-        UpdateArrows();
+        UpdateUI();
     }
 
-    public void UpdateArrows()
+    public void UpdateUI()
     {
         if (currentLevelId == 0)
             leftArrow.SetActive(false);
@@ -53,5 +57,12 @@ public class MainMenu : MonoBehaviour
             rightArrow.SetActive(false);
         else
             rightArrow.SetActive(true);
+        print(currentLevelId);
+        image.sprite = levels[currentLevelId].sprite;
+    }
+
+    public void PlaySelectedLevel()
+    {
+        fader.TransitionToScene(levels[currentLevelId].sceneId);
     }
 }
