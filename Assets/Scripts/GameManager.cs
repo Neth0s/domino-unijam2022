@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject constructionMenu;
     [SerializeField] private GameObject path;
     [SerializeField] private int nextLevelIndex = 0;
-    private EndMenu endMenu;
+    [SerializeField] private EndMenu endMenu;
 
     private bool gameEnded = false;
     private Fader fader;
@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     {
         fader = FindObjectOfType<Fader>();
         fallMenu.SetActive(false);
-        endMenu = FindObjectOfType<EndMenu>();
     }
 
     public void SwitchToShowdownPhase()

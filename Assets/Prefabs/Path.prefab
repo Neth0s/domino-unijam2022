@@ -116,7 +116,7 @@ MonoBehaviour:
     roll: 0
   - position: {x: -1.368718, y: 0.01, z: -3.0078683}
     roll: 0
-  - position: {x: -0.09786332, y: 0.01, z: -4.73515}
+  - position: {x: -0.66770184, y: 0.01, z: -4.375317}
     roll: 0
 --- !u!114 &8703186420362937323
 MonoBehaviour:
