@@ -10,6 +10,8 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private float minTimeBetweenDominos = 0.1f;
 
+    [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
+
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
 
@@ -42,11 +44,12 @@ public class DominoSpawner : MonoBehaviour
     }
     private void Spawn(int prefabIndex)
     {
+        Debug.Log("Hello");
         if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
             return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
-            Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position, spawnPoint.rotation);
+            Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
         }
