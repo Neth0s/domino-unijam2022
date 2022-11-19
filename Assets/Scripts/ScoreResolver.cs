@@ -15,7 +15,7 @@ public class ScoreResolver : MonoBehaviour
     [SerializeField] float maxTimeBetweenFalls = 1f;
     [SerializeField] float errorScoreMultiplier = 0.5f;
     [SerializeField] float showdownTorque = 100f;
-
+    [SerializeField] Vector4 expressionThreshold = new Vector4(10, 20, 30, 40);
     static public Action OnStartScoreResolution;
 
     bool[] fallenDominosTags;
@@ -131,6 +131,7 @@ public class ScoreResolver : MonoBehaviour
     private void StopScoreResolution()
     {
         isResolving = false;
+        GameManager.Instance.Invoke("ShowEndMenu", 1f);
     }
 
     private void Showdown(int index)
