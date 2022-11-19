@@ -105,7 +105,7 @@ MonoBehaviour:
   dominoPrefabs:
   - {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
   dominosCounts: 64000000
-  minTimeBetweenDominos: 0.15
+  minTimeBetweenDominos: 0.2
   dominosCountsTexts:
   - {fileID: 0}
   - {fileID: 0}

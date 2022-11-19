@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera followCamera;
     [SerializeField] private CinemachineVirtualCamera fixedCamera;
+    [SerializeField] private GameObject fallMenu;
     [SerializeField] private GameObject path;
-    [SerializeField] private int mainMenuSceneIndex = 0;
+
 
     private Fader fader;
 
@@ -23,11 +24,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         fader = FindObjectOfType<Fader>();
+        fallMenu.SetActive(false);
     }
 
     public void SwitchToShowdownPhase()
     {
         path.GetComponentInChildren<LineRenderer>().enabled = false;
+        fallMenu.SetActive(true);
+
         followCamera.Priority = 10;
         fixedCamera.Priority = 20;
     }
@@ -39,6 +43,6 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        fader.TransitionToScene(mainMenuSceneIndex);
+        fader.TransitionToScene(0);
     }
 }

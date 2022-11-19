@@ -8,6 +8,7 @@ public class ScoreResolver : MonoBehaviour
 {
     [Header("Dependancies")]
     [SerializeField] GameObject dominosParent;
+    [SerializeField] GameObject button;
     [SerializeField] TMP_Text scoreText;
 
     [Header ("Parameters")]
@@ -49,6 +50,20 @@ public class ScoreResolver : MonoBehaviour
         scoreText.text = ((int)score).ToString();
     }
 
+    public void StartScoreResolution()
+    {
+        button.SetActive(false);
+        scoreText.gameObject.SetActive(true);
+
+        isResolving = true;
+        fallenDominosTags = new bool[dominosParent.transform.childCount];
+        clock = maxTimeBetweenFalls;
+
+        Showdown(0);
+
+        OnStartScoreResolution();
+    }
+
     private void HandleFall(Domino domino)
     {
         if (!isResolving) return;
@@ -82,17 +97,6 @@ public class ScoreResolver : MonoBehaviour
         Debug.Log("Bad domino fall, combo interrupted.");
         currentDistanceCombo = 0f;
         score *= errorScoreMultiplier;
-    }
-
-    public void StartScoreResolution()
-    {
-        isResolving = true;
-        fallenDominosTags = new bool[dominosParent.transform.childCount];
-        clock = maxTimeBetweenFalls;
-
-        Showdown(0);
-
-        OnStartScoreResolution();
     }
 
     private void CheckDominoLeftToFall()
