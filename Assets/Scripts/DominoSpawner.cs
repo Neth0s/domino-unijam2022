@@ -5,29 +5,32 @@ using TMPro;
 using Cinemachine;
 public class DominoSpawner : MonoBehaviour
 {
-    [SerializeField] float speed = 0.3f;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject dominosParent;
+
+    [Header("Dominos")]
     [SerializeField] private List<GameObject> dominoPrefabs;
     [SerializeField] private List<int> dominosCounts;
-    [SerializeField] private float minTimeBetweenDominos = 0.1f;
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
+    [SerializeField] private List<Color> dominoColors;
+    [SerializeField] private Color disabledColor;
 
-    [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
+    [Header("Parameters")]
+    [SerializeField] float speed = 0.3f;
+    [SerializeField] private float minTimeBetweenDominos = 0.1f;
+    [SerializeField] private Vector3 spawnOffset = new (0, 0.3f, 0);
 
-    [SerializeField] private int dominoIndex = 0;
+    private int dominoIndex = 0;
     private float lastPosition = -1;
-
-
     private float currentTimeBetweenDominos = Mathf.Infinity;
-    Controls controls;
-    private List<float> distances;
-    private List<int> colors;
     private int dominosRemaining = 0;
     private bool dollyCartStarted = false;
 
-    CinemachineDollyCart dollyCart;
+    Controls controls;
+    private List<float> distances;
+    private List<int> colors;
 
-    [SerializeField] GameObject dominosParent;
+    CinemachineDollyCart dollyCart;
 
     private void Awake()
     {
@@ -47,6 +50,7 @@ public class DominoSpawner : MonoBehaviour
         for (int i = 0; i < Mathf.Min(dominosCountsTexts.Count, dominosCounts.Count); i++)
         {
             dominosCountsTexts[i].text = dominosCounts[i].ToString();
+            if (dominosCounts[i] == 0) dominosCountsTexts[i].color = disabledColor;
         }
 
         controls = new Controls();
@@ -69,8 +73,8 @@ public class DominoSpawner : MonoBehaviour
     private void Update()
     {
         currentTimeBetweenDominos += Time.deltaTime;
-        if (dollyCartStarted && (lastPosition == dollyCart.m_Position))
-            PlacingPhaseFinished();
+
+        if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
         lastPosition = dollyCart.m_Position;
     }
 
