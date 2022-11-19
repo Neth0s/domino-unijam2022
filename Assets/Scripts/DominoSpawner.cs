@@ -6,13 +6,12 @@ using Cinemachine;
 
 public class DominoSpawner : MonoBehaviour
 {
-    [SerializeField] float distanceBetweenDominos = 1;
+    [SerializeField] float speed = 0.3f;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private List<GameObject> dominoPrefabs;
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private float minTimeBetweenDominos = 0.1f;
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
-    [SerializeField] private CinemachineDollyCart dollyCart;
 
     [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
 
@@ -23,11 +22,15 @@ public class DominoSpawner : MonoBehaviour
     Controls controls;
     private List<float> distances;
     private List<int> colors;
+    private int dominosRemaining = 0;
+    private bool dollyCartStarted = false;
 
     CinemachineDollyCart dollyCart;
 
     private void Awake()
     {
+        for (int i = 0; i < dominosCounts.Count; i++)
+            dominosRemaining += dominosCounts[i];
         dollyCart = GetComponent<CinemachineDollyCart>();
     }
 
@@ -64,7 +67,11 @@ public class DominoSpawner : MonoBehaviour
     }
     private void Spawn(int prefabIndex)
     {
-        Debug.Log("Hello");
+        if (!dollyCartStarted)
+        {
+            dollyCartStarted = true;
+            dollyCart.m_Speed = speed;
+        }
         if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
             return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
@@ -72,6 +79,7 @@ public class DominoSpawner : MonoBehaviour
             var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
+            dominosRemaining -= 1;
             distances.Add(dollyCart.m_Position);
             colors.Add(prefabIndex);
             if (dominosCountsTexts.Count > prefabIndex)
@@ -80,5 +88,13 @@ public class DominoSpawner : MonoBehaviour
             dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position);
             dominoIndex++;
         }
+        if (dominosRemaining <= 0)
+            PlacingPhaseFinished();
+    }
+
+    private void PlacingPhaseFinished()
+    {
+        GameManager.Instance.SwitchToShowdownPhase();
+        Destroy(gameObject);
     }
 }

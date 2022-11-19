@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private CinemachineVirtualCamera followCamera;
+    [SerializeField] private CinemachineVirtualCamera fixedCamera;
+
+    public static GameManager Instance;
+    private void Awake()
     {
-        
+        Debug.Assert(Instance == null);
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SwitchToShowdownPhase()
     {
-        
+        followCamera.Priority = 10;
+        fixedCamera.Priority = 20;
     }
 }
