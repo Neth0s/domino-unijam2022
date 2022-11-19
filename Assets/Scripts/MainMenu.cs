@@ -57,7 +57,6 @@ public class MainMenu : MonoBehaviour
             rightArrow.SetActive(false);
         else
             rightArrow.SetActive(true);
-        print(currentLevelId);
         image.sprite = levels[currentLevelId].sprite;
     }
 
