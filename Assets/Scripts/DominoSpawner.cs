@@ -24,6 +24,8 @@ public class DominoSpawner : MonoBehaviour
 
     CinemachineDollyCart dollyCart;
 
+    [SerializeField] GameObject dominosParent;
+
     private void Awake()
     {
         dollyCart = GetComponent<CinemachineDollyCart>();
@@ -60,12 +62,11 @@ public class DominoSpawner : MonoBehaviour
     }
     private void Spawn(int prefabIndex)
     {
-        Debug.Log("Hello");
         if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
             return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
-            var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
+            var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation, dominosParent.transform);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
             if (dominosCountsTexts.Count > prefabIndex)

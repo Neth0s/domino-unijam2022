@@ -47,7 +47,6 @@ public class Domino : MonoBehaviour
     {
         if(!HasFallen && CheckForFall())
         {
-            Debug.Log("OnFall");
             HasFallen = true;
             OnFall?.Invoke(this);
             OnFallUnityEvent?.Invoke();

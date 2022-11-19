@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreResolver : MonoBehaviour
@@ -10,18 +11,23 @@ public class ScoreResolver : MonoBehaviour
     [SerializeField] float clock = 0;
     [SerializeField] float maxTimeBetweenFalls = 1f;
 
+    [SerializeField] float multiplicativeCoefficientOnFault = 0.5f;
+
+    [SerializeField] GameObject dominosParent;
+    [SerializeField] float showdownTorque = 100f;
+
     static public Action OnStartScoreResolution;
+
+    bool[] fallenDominosTags;
+
+    [SerializeField] TMP_Text scoreText;
+
 
     bool isResolving = false;
 
     int lastDominoIndex = -1;
     float lastDistance = 0f;
     float currentDistanceCombo = 0f;
-
-    private void Awake()
-    {
-        StartScoreResolution();
-    }
 
     private void OnEnable()
     {
@@ -38,6 +44,8 @@ public class ScoreResolver : MonoBehaviour
         if (!isResolving) return;
 
         clock = maxTimeBetweenFalls;
+
+        fallenDominosTags[domino.Index] = true;
 
         UpdateScore(domino);
     }
@@ -61,11 +69,13 @@ public class ScoreResolver : MonoBehaviour
 
     private void OnBadDominoFall()
     {
-        currentDistanceCombo = 0f;
+        Debug.Log("Bad domino has fallen");
+        score *= multiplicativeCoefficientOnFault;
     }
 
     private void OnRightDominoFall(float distanceDelta)
     {
+        Debug.Log("Right domino has fallen");
         currentDistanceCombo = distanceDelta;
         score += distanceDelta;
     }
@@ -78,20 +88,53 @@ public class ScoreResolver : MonoBehaviour
 
             if (clock <= 0)
             {
-                StopScoreResolution();
+                Debug.Log("Time out, check if there is still a domino to fall");
+                CheckIfThereIsStillADominoToFall();
             }
         }
+
+        scoreText.text = score.ToString();
     }
 
     public void StartScoreResolution()
     {
         isResolving = true;
+        fallenDominosTags = new bool[dominosParent.transform.childCount];
+        clock = maxTimeBetweenFalls;
+
+        Showdown(0);
 
         OnStartScoreResolution();
+    }
+
+    private void CheckIfThereIsStillADominoToFall()
+    {
+        for (int i = 0; i < fallenDominosTags.Length; i++)
+        {
+            if(fallenDominosTags[i] == false)
+            {
+                score *= multiplicativeCoefficientOnFault;
+                clock = maxTimeBetweenFalls;
+                Debug.Log("Found domino " + i.ToString() + " that can fall. Fault.");
+                Debug.Log("Score: " + score.ToString());
+                Showdown(i);
+                return;
+            }
+        }
+
+        StopScoreResolution();
     }
 
     private void StopScoreResolution()
     {
         isResolving = false;
+        Debug.Log("Stop score resolution");
+        Debug.Log("Final score: " + score.ToString());
+    }
+
+    private void Showdown(int index)
+    {
+        var dominoToShowdown = dominosParent.transform.GetChild(index);
+        dominoToShowdown.GetComponent<Rigidbody>().AddTorque(dominoToShowdown.right * showdownTorque);
     }
 }
