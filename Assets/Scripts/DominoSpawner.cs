@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
-
 public class DominoSpawner : MonoBehaviour
 {
     [SerializeField] float speed = 0.3f;
@@ -16,8 +15,7 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
 
     [SerializeField] int dominoIndex = 0;
-
-
+    private float lastPosition = -1;
     private float currentTimeBetweenDominos = Mathf.Infinity;
     Controls controls;
     private List<float> distances;
@@ -66,6 +64,9 @@ public class DominoSpawner : MonoBehaviour
     private void Update()
     {
         currentTimeBetweenDominos += Time.deltaTime;
+        if (dollyCartStarted && (lastPosition == dollyCart.m_Position))
+            PlacingPhaseFinished();
+        lastPosition = dollyCart.m_Position;
     }
     private void Spawn(int prefabIndex)
     {
