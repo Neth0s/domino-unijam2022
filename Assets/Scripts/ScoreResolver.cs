@@ -6,22 +6,21 @@ using UnityEngine;
 
 public class ScoreResolver : MonoBehaviour
 {
-    [SerializeField] float score;
-
-    [SerializeField] float clock = 0;
-    [SerializeField] float maxTimeBetweenFalls = 1f;
-
-    [SerializeField] float multiplicativeCoefficientOnFault = 0.5f;
-
+    [Header("Dependancies")]
     [SerializeField] GameObject dominosParent;
+    [SerializeField] TMP_Text scoreText;
+
+    [Header ("Parameters")]
+    [SerializeField] float maxTimeBetweenFalls = 1f;
+    [SerializeField] float errorScoreMultiplier = 0.5f;
     [SerializeField] float showdownTorque = 100f;
 
     static public Action OnStartScoreResolution;
 
     bool[] fallenDominosTags;
 
-    [SerializeField] TMP_Text scoreText;
-
+    private float score;
+    private float clock = 0;
 
     bool isResolving = false;
 
@@ -39,12 +38,22 @@ public class ScoreResolver : MonoBehaviour
         Domino.OnFall -= HandleFall;
     }
 
+    private void Update()
+    {
+        if (isResolving)
+        {
+            clock -= Time.deltaTime;
+            if (clock <= 0) CheckDominoLeftToFall();
+        }
+
+        scoreText.text = ((int)score).ToString();
+    }
+
     private void HandleFall(Domino domino)
     {
         if (!isResolving) return;
 
         clock = maxTimeBetweenFalls;
-
         fallenDominosTags[domino.Index] = true;
 
         UpdateScore(domino);
@@ -55,49 +64,24 @@ public class ScoreResolver : MonoBehaviour
         if(domino.Index == lastDominoIndex + 1)
         {
             float distanceDelta = domino.Distance - lastDistance;
-            OnRightDominoFall(distanceDelta);
+            OnCorrectDominoFall(distanceDelta);
         }
-        else
-        {
-            OnBadDominoFall();
-        }
-
-        Debug.Log("Score: " + score.ToString() + " Current Distance Combo: " + currentDistanceCombo.ToString());
+        else OnBadDominoFall();
 
         lastDominoIndex = domino.Index;
     }
 
-    private void OnRightDominoFall(float distanceDelta)
+    private void OnCorrectDominoFall(float distanceDelta)
     {
-        Debug.Log("Right domino has fallen");
-        if(currentDistanceCombo != 0f)
-        {
-            score += distanceDelta;
-        }
+        if(currentDistanceCombo != 0f) score += distanceDelta;
         currentDistanceCombo += distanceDelta;
     }
 
     private void OnBadDominoFall()
     {
-        Debug.Log("Bad domino has fallen");
+        Debug.Log("Bad domino fall, combo interrupted.");
         currentDistanceCombo = 0f;
-        score *= multiplicativeCoefficientOnFault;
-    }
-
-    private void Update()
-    {
-        if(isResolving)
-        {
-            clock -= Time.deltaTime;
-
-            if (clock <= 0)
-            {
-                Debug.Log("Time out, check if there is still a domino to fall");
-                CheckIfThereIsStillADominoToFall();
-            }
-        }
-
-        scoreText.text = score.ToString();
+        score *= errorScoreMultiplier;
     }
 
     public void StartScoreResolution()
@@ -111,17 +95,16 @@ public class ScoreResolver : MonoBehaviour
         OnStartScoreResolution();
     }
 
-    private void CheckIfThereIsStillADominoToFall()
+    private void CheckDominoLeftToFall()
     {
         for (int i = 0; i < fallenDominosTags.Length; i++)
         {
-            if(fallenDominosTags[i] == false)
+            if(!fallenDominosTags[i])
             {
-                score *= multiplicativeCoefficientOnFault;
+                score *= errorScoreMultiplier;
                 clock = maxTimeBetweenFalls;
-                Debug.Log("Found domino " + i.ToString() + " that can fall. Fault.");
-                Debug.Log("Score: " + score.ToString());
                 currentDistanceCombo = 0f;
+
                 Showdown(i);
                 return;
             }
@@ -133,8 +116,6 @@ public class ScoreResolver : MonoBehaviour
     private void StopScoreResolution()
     {
         isResolving = false;
-        Debug.Log("Stop score resolution");
-        Debug.Log("Final score: " + score.ToString());
     }
 
     private void Showdown(int index)

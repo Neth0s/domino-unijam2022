@@ -41,6 +41,7 @@ public class Domino : MonoBehaviour
     public void HandleStartScoreResolution()
     {
         SetInitialPosition();
+        Cinemachine.CinemachineTrackedDolly dolly;
     }
 
     private void Update()
