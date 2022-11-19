@@ -15,6 +15,10 @@ public class Showdown : MonoBehaviour
     void Start()
     {
         rb = firstDomino.GetComponent<Rigidbody>();
+    }
+
+    public void StartShowdown()
+    {
         rb.AddTorque(firstDomino.transform.right * torque);
     }
 }
