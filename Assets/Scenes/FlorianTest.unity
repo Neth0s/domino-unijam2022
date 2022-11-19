@@ -405,6 +405,7 @@ MonoBehaviour:
   - {fileID: 132618011}
   - {fileID: 19339183}
   - {fileID: 943771142}
+  dollyCart: {fileID: 1420441529}
 --- !u!114 &1420441529
 MonoBehaviour:
   m_ObjectHideFlags: 0
