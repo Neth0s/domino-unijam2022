@@ -268,6 +268,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 65bd8405ff84dbc40a1945eefda45e7f, type: 2}
+    - target: {fileID: -3014433542036378424, guid: 1b9206a1b34a400499b48c49295f953d, type: 3}
+      propertyPath: m_Name
+      value: Parquet
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1b9206a1b34a400499b48c49295f953d, type: 3}
       propertyPath: m_Name
       value: Chambre_clean
@@ -405,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 1804752066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1215399969}

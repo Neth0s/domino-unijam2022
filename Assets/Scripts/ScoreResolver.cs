@@ -15,15 +15,18 @@ public class ScoreResolver : MonoBehaviour
 
     [Header ("Parameters")]
     [SerializeField] float maxTimeBetweenFalls = 1f;
+    [SerializeField] float scoreMultiplier = 10f;
     [SerializeField] float errorScoreMultiplier = 0.5f;
     [SerializeField] float showdownTorque = 100f;
-    [SerializeField] Vector4 expressionThreshold = new Vector4(10, 20, 30, 40);
+    [SerializeField] Vector4 expressionThreshold = new(10, 20, 30, 40);
     [SerializeField] private List<Sprite> faceExpressions;
+
     static public Action OnStartScoreResolution;
 
     bool[] fallenDominosTags;
 
-    private float score;
+    private float score = 0;
+    private float errors = 0;
     private float clock = 0;
 
     bool isResolving = false;
@@ -82,10 +85,10 @@ public class ScoreResolver : MonoBehaviour
         if(domino.Index == lastDominoIndex + 1)
         {
             if (domino.HasGoodColor)
-                OnCorrectDominoFall(domino);
-            else OnNotGoodColorDominoFall(domino);
+                OnCorrectFall(domino);
+            else OnWrongColor(domino);
         }
-        else OnBadDominoFall();
+        else OnBadFall();
 
         lastDominoIndex = domino.Index;
 
@@ -106,27 +109,28 @@ public class ScoreResolver : MonoBehaviour
             return 4;
     }
 
-    private void OnCorrectDominoFall(Domino domino)
+    private void OnCorrectFall(Domino domino)
     {
         float distanceDelta = domino.Distance - lastDistance;
-        if (currentDistanceCombo != 0f) score += distanceDelta;
+        if (currentDistanceCombo != 0f) score += scoreMultiplier * distanceDelta;
         currentDistanceCombo += distanceDelta;
-        Debug.Log("CorrectDominoFall");
     }
 
-    private void OnNotGoodColorDominoFall(Domino domino)
+    private void OnWrongColor(Domino domino)
     {
         currentDistanceCombo = 0f;
-        Debug.Log("NotGoodColorDominoFall");
+        Debug.Log("Wrong color");
     }
 
-    private void OnBadDominoFall()
+    private void OnBadFall()
     {
         currentDistanceCombo = 0f;
         score *= errorScoreMultiplier;
-        Debug.Log("BadDominoFall");
+        Debug.Log("Bad fall");
 
         lastDominoIndex++;
+        errors++;
+        if (errors == 3) StopScoreResolution();
     }
 
     private void CheckDominoLeftToFall()
@@ -135,9 +139,8 @@ public class ScoreResolver : MonoBehaviour
         {
             if(!fallenDominosTags[i])
             {
-                score *= errorScoreMultiplier;
                 clock = maxTimeBetweenFalls;
-                currentDistanceCombo = 0f;
+                OnBadFall();
 
                 Showdown(i);
                 return;
