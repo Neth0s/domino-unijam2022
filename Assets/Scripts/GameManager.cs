@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera followCamera;
     [SerializeField] private CinemachineVirtualCamera fixedCamera;
     [SerializeField] private GameObject fallMenu;
+    [SerializeField] private GameObject constructionMenu;
     [SerializeField] private GameObject path;
 
 
@@ -30,7 +31,9 @@ public class GameManager : MonoBehaviour
     public void SwitchToShowdownPhase()
     {
         path.GetComponentInChildren<LineRenderer>().enabled = false;
+        constructionMenu.SetActive(false);
         fallMenu.SetActive(true);
+
 
         followCamera.Priority = 10;
         fixedCamera.Priority = 20;

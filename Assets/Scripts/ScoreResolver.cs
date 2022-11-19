@@ -97,6 +97,8 @@ public class ScoreResolver : MonoBehaviour
         Debug.Log("Bad domino fall, combo interrupted.");
         currentDistanceCombo = 0f;
         score *= errorScoreMultiplier;
+
+        lastDominoIndex++;
     }
 
     private void CheckDominoLeftToFall()

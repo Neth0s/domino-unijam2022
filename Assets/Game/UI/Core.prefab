@@ -163,6 +163,7 @@ MonoBehaviour:
   followCamera: {fileID: 6674188977182386101}
   fixedCamera: {fileID: 6674188976870532098}
   fallMenu: {fileID: 6743911004173999257}
+  constructionMenu: {fileID: 2887656323357297239}
   path: {fileID: 3675498087106151864}
 --- !u!1 &6674188976595551945
 GameObject:
@@ -1003,6 +1004,11 @@ MonoBehaviour:
 --- !u!1 &2062415545655170080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 561034829, guid: 2de1a528c676fd345bf032ca885cb3b1, type: 3}
+  m_PrefabInstance: {fileID: 2062415545142452845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2887656323357297239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3786445516165539898, guid: 2de1a528c676fd345bf032ca885cb3b1, type: 3}
   m_PrefabInstance: {fileID: 2062415545142452845}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4876196932395056344 stripped
