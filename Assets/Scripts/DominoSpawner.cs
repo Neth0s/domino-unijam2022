@@ -14,9 +14,8 @@ public class DominoSpawner : MonoBehaviour
 
     [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
 
-    [SerializeField] int dominoIndex = 0;
+    [SerializeField] private int dominoIndex = 0;
     private float lastPosition = -1;
-    private int dominoIndex = 0;
 
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
