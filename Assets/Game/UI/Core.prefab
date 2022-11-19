@@ -325,8 +325,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6674188976870532099}
-  m_LocalRotation: {x: 0.15730393, y: -0.6678244, z: 0.14746009, w: 0.7124056}
-  m_LocalPosition: {x: 3.4751186, y: 1.4674907, z: -1.2639258}
+  m_LocalRotation: {x: -0.08149088, y: -0.9040497, z: 0.19962, w: -0.36906007}
+  m_LocalPosition: {x: -4.53, y: 2.88, z: 4.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1059,6 +1059,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6674188975577649133}
     - target: {fileID: 6674188975392754920, guid: 749ff50252c66834fb7b2d339d2bc6ef, type: 3}
+      propertyPath: minTimeBetweenDominos
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674188975392754920, guid: 749ff50252c66834fb7b2d339d2bc6ef, type: 3}
       propertyPath: dominosCountsTexts.Array.data[0]
       value: 
       objectReference: {fileID: 4876196932295478421}
@@ -1151,10 +1155,6 @@ PrefabInstance:
     - target: {fileID: 8703186420362937321, guid: e55fd212b92dca347a5ceb4db0584a97, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 8703186420362937321, guid: e55fd212b92dca347a5ceb4db0584a97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8703186420362937321, guid: e55fd212b92dca347a5ceb4db0584a97, type: 3}
       propertyPath: m_LocalPosition.z
