@@ -13,7 +13,8 @@ public class ScoreResolver : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
     [SerializeField] Image girlExpressionImage;
 
-    [Header ("Parameters")]
+    [Header("Parameters")]
+    [SerializeField] float scoreMultiplier = 10;
     [SerializeField] float maxTimeBetweenFalls = 1f;
     [SerializeField] float errorScoreMultiplier = 0.5f;
     [SerializeField] float showdownTorque = 100f;
@@ -23,7 +24,8 @@ public class ScoreResolver : MonoBehaviour
 
     bool[] fallenDominosTags;
 
-    private float score;
+    private float score = 0;
+    private float errors = 0;
     private float clock = 0;
 
     bool isResolving = false;
@@ -104,24 +106,26 @@ public class ScoreResolver : MonoBehaviour
     private void OnCorrectDominoFall(Domino domino)
     {
         float distanceDelta = domino.Distance - lastDistance;
-        if (currentDistanceCombo != 0f) score += distanceDelta;
+        if (currentDistanceCombo != 0f) score += scoreMultiplier * distanceDelta;
         currentDistanceCombo += distanceDelta;
-        Debug.Log("CorrectDominoFall");
     }
 
     private void OnNotGoodColorDominoFall(Domino domino)
     {
         currentDistanceCombo = 0f;
-        Debug.Log("NotGoodColorDominoFall");
+        Debug.Log("Wrong color");
     }
 
     private void OnBadDominoFall()
     {
         currentDistanceCombo = 0f;
         score *= errorScoreMultiplier;
-        Debug.Log("BadDominoFall");
+        Debug.Log("Bad fall");
 
         lastDominoIndex++;
+        errors++;
+
+        if (errors >= 3) StopScoreResolution();
     }
 
     private void CheckDominoLeftToFall()
@@ -130,9 +134,8 @@ public class ScoreResolver : MonoBehaviour
         {
             if(!fallenDominosTags[i])
             {
-                score *= errorScoreMultiplier;
                 clock = maxTimeBetweenFalls;
-                currentDistanceCombo = 0f;
+                OnBadDominoFall();
 
                 Showdown(i);
                 return;
