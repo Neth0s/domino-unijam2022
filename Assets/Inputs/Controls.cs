@@ -28,7 +28,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""id"": ""d4aa3b91-82c5-4859-a875-d76483bc2eeb"",
             ""actions"": [
                 {
-                    ""name"": ""Place"",
+                    ""name"": ""PlaceColor1"",
                     ""type"": ""Button"",
                     ""id"": ""a6e85bb3-7975-40e1-82aa-f49522a43d76"",
                     ""expectedControlType"": ""Button"",
@@ -37,9 +37,27 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Switch"",
+                    ""name"": ""PlaceColor2"",
                     ""type"": ""Button"",
-                    ""id"": ""dbff6df6-dad7-4e09-a166-e3127dabaec3"",
+                    ""id"": ""e99ae2c3-b41c-46a8-a4ab-a8b23785219c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceColor3"",
+                    ""type"": ""Button"",
+                    ""id"": ""3248f96e-dd10-4b79-bd0c-3dd4d7f7ed1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceColor4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9d5de1e-302c-45e2-bcbd-4bb783e10547"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -50,22 +68,44 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3338267a-360f-4c3e-a77b-3e433ee73c21"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Place"",
+                    ""action"": ""PlaceColor1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6de541e3-4573-4f7f-b3d7-e269c7fae4ea"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""e5f91c22-39ed-4a16-8c8d-234b575f41e1"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Switch"",
+                    ""action"": ""PlaceColor2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""746eb044-2a7a-44eb-9908-92c9acc0bd94"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceColor3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8680dcb-ce99-4c84-9f38-4f02368f0d13"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceColor4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -76,8 +116,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
-        m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        m_Player_PlaceColor1 = m_Player.FindAction("PlaceColor1", throwIfNotFound: true);
+        m_Player_PlaceColor2 = m_Player.FindAction("PlaceColor2", throwIfNotFound: true);
+        m_Player_PlaceColor3 = m_Player.FindAction("PlaceColor3", throwIfNotFound: true);
+        m_Player_PlaceColor4 = m_Player.FindAction("PlaceColor4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -137,14 +179,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Place;
-    private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_PlaceColor1;
+    private readonly InputAction m_Player_PlaceColor2;
+    private readonly InputAction m_Player_PlaceColor3;
+    private readonly InputAction m_Player_PlaceColor4;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Place => m_Wrapper.m_Player_Place;
-        public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        public InputAction @PlaceColor1 => m_Wrapper.m_Player_PlaceColor1;
+        public InputAction @PlaceColor2 => m_Wrapper.m_Player_PlaceColor2;
+        public InputAction @PlaceColor3 => m_Wrapper.m_Player_PlaceColor3;
+        public InputAction @PlaceColor4 => m_Wrapper.m_Player_PlaceColor4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -154,29 +200,43 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Place.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlace;
-                @Place.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlace;
-                @Place.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlace;
-                @Switch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
-                @Switch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
-                @Switch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
+                @PlaceColor1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor1;
+                @PlaceColor1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor1;
+                @PlaceColor1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor1;
+                @PlaceColor2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor2;
+                @PlaceColor2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor2;
+                @PlaceColor2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor2;
+                @PlaceColor3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor3;
+                @PlaceColor3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor3;
+                @PlaceColor3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor3;
+                @PlaceColor4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor4;
+                @PlaceColor4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor4;
+                @PlaceColor4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor4;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Place.started += instance.OnPlace;
-                @Place.performed += instance.OnPlace;
-                @Place.canceled += instance.OnPlace;
-                @Switch.started += instance.OnSwitch;
-                @Switch.performed += instance.OnSwitch;
-                @Switch.canceled += instance.OnSwitch;
+                @PlaceColor1.started += instance.OnPlaceColor1;
+                @PlaceColor1.performed += instance.OnPlaceColor1;
+                @PlaceColor1.canceled += instance.OnPlaceColor1;
+                @PlaceColor2.started += instance.OnPlaceColor2;
+                @PlaceColor2.performed += instance.OnPlaceColor2;
+                @PlaceColor2.canceled += instance.OnPlaceColor2;
+                @PlaceColor3.started += instance.OnPlaceColor3;
+                @PlaceColor3.performed += instance.OnPlaceColor3;
+                @PlaceColor3.canceled += instance.OnPlaceColor3;
+                @PlaceColor4.started += instance.OnPlaceColor4;
+                @PlaceColor4.performed += instance.OnPlaceColor4;
+                @PlaceColor4.canceled += instance.OnPlaceColor4;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnPlace(InputAction.CallbackContext context);
-        void OnSwitch(InputAction.CallbackContext context);
+        void OnPlaceColor1(InputAction.CallbackContext context);
+        void OnPlaceColor2(InputAction.CallbackContext context);
+        void OnPlaceColor3(InputAction.CallbackContext context);
+        void OnPlaceColor4(InputAction.CallbackContext context);
     }
 }

@@ -6,7 +6,7 @@
             "id": "d4aa3b91-82c5-4859-a875-d76483bc2eeb",
             "actions": [
                 {
-                    "name": "Place",
+                    "name": "PlaceColor1",
                     "type": "Button",
                     "id": "a6e85bb3-7975-40e1-82aa-f49522a43d76",
                     "expectedControlType": "Button",
@@ -15,9 +15,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Switch",
+                    "name": "PlaceColor2",
                     "type": "Button",
-                    "id": "dbff6df6-dad7-4e09-a166-e3127dabaec3",
+                    "id": "e99ae2c3-b41c-46a8-a4ab-a8b23785219c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceColor3",
+                    "type": "Button",
+                    "id": "3248f96e-dd10-4b79-bd0c-3dd4d7f7ed1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceColor4",
+                    "type": "Button",
+                    "id": "f9d5de1e-302c-45e2-bcbd-4bb783e10547",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -28,22 +46,44 @@
                 {
                     "name": "",
                     "id": "3338267a-360f-4c3e-a77b-3e433ee73c21",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place",
+                    "action": "PlaceColor1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "6de541e3-4573-4f7f-b3d7-e269c7fae4ea",
-                    "path": "<Keyboard>/tab",
+                    "id": "e5f91c22-39ed-4a16-8c8d-234b575f41e1",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Switch",
+                    "action": "PlaceColor2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "746eb044-2a7a-44eb-9908-92c9acc0bd94",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceColor3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8680dcb-ce99-4c84-9f38-4f02368f0d13",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceColor4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

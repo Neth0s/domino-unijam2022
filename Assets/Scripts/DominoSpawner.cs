@@ -10,8 +10,6 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private float minTimeBetweenDominos = 0.1f;
 
-    private int prefabIndex = 0;
-    private int dominoTypesRemaining;
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
 
@@ -19,45 +17,38 @@ public class DominoSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        dominoTypesRemaining = dominoPrefabs.Count;
+        if (dominoPrefabs.Count != dominosCounts.Count)
+        {
+            Debug.Log("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
+        }
+        controls = new Controls();
         controls.Player.Enable();
-        controls.Player.Place.performed += ctx => Spawn();
-        controls.Player.Switch.performed += ctx => Switch();
+        controls.Player.PlaceColor1.performed += ctx => Spawn(0);
+        controls.Player.PlaceColor2.performed += ctx => Spawn(1);
+        controls.Player.PlaceColor3.performed += ctx => Spawn(2);
+        controls.Player.PlaceColor4.performed += ctx => Spawn(3);
     }
     private void OnDisable()
     {
         controls.Player.Disable();
-        controls.Player.Place.performed -= ctx => Spawn();
-        controls.Player.Switch.performed -= ctx => Switch();
+        controls.Player.PlaceColor1.performed -= ctx => Spawn(0);
+        controls.Player.PlaceColor2.performed -= ctx => Spawn(1);
+        controls.Player.PlaceColor3.performed -= ctx => Spawn(2);
+        controls.Player.PlaceColor4.performed -= ctx => Spawn(3);
     }
     private void Update()
     {
         currentTimeBetweenDominos += Time.deltaTime;
     }
-    private void Spawn()
+    private void Spawn(int prefabIndex)
     {
+        if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
+            return;
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
             Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
-            if (dominosCounts[prefabIndex] <= 0)
-            {
-                Switch();
-                dominoTypesRemaining -= 1;
-            }
         }
-    }
-
-    private void Switch()
-    {
-        if (dominoTypesRemaining <= 0)
-        {
-            return;
-        }
-        do
-        {
-            prefabIndex = (prefabIndex + 1) % dominoPrefabs.Count;
-        } while (dominosCounts[prefabIndex] <= 0);
     }
 }
