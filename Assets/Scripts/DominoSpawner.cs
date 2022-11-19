@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DominoSpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> dominoPrefabs;
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private float minTimeBetweenDominos = 0.1f;
+    [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
 
     [SerializeField] Vector3 spawnOffset = new Vector3(0, 0.3f, 0);
 
@@ -22,6 +24,10 @@ public class DominoSpawner : MonoBehaviour
         if (dominoPrefabs.Count != dominosCounts.Count)
         {
             Debug.Log("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
+        }
+        for (int i = 0; i < Mathf.Min(dominosCountsTexts.Count, dominosCounts.Count); i++)
+        {
+            dominosCountsTexts[i].text = dominosCounts[i].ToString();
         }
         controls = new Controls();
         controls.Player.Enable();
@@ -52,6 +58,8 @@ public class DominoSpawner : MonoBehaviour
             Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
+            if (dominosCountsTexts.Count > prefabIndex)
+                dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
         }
     }
 }
