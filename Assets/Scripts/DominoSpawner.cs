@@ -31,8 +31,7 @@ public class DominoSpawner : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < dominosCounts.Count; i++)
-            dominosRemaining += dominosCounts[i];
+        for (int i = 0; i < dominosCounts.Count; i++) dominosRemaining += dominosCounts[i];
         dollyCart = GetComponent<CinemachineDollyCart>();
     }
 
@@ -40,9 +39,10 @@ public class DominoSpawner : MonoBehaviour
     {
         distances = new List<float>();
         colors = new List<int>();
+
         if (dominoPrefabs.Count != dominosCounts.Count)
         {
-            Debug.LogWarning("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
+            Debug.LogWarning("La liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
         }
         for (int i = 0; i < Mathf.Min(dominosCountsTexts.Count, dominosCounts.Count); i++)
         {
@@ -78,24 +78,26 @@ public class DominoSpawner : MonoBehaviour
             dollyCartStarted = true;
             dollyCart.m_Speed = speed;
         }
-        if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0)
-            return;
+        if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0) return;
+
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
             var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation, dominosParent.transform);
+            
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
             dominosRemaining -= 1;
             distances.Add(dollyCart.m_Position);
             colors.Add(prefabIndex);
+            
             if (dominosCountsTexts.Count > prefabIndex)
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
 
             dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position);
             dominoIndex++;
         }
-        if (dominosRemaining <= 0)
-            PlacingPhaseFinished();
+        
+        if (dominosRemaining <= 0) PlacingPhaseFinished();
     }
 
     private void PlacingPhaseFinished()

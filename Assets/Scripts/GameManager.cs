@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera followCamera;
     [SerializeField] private CinemachineVirtualCamera fixedCamera;
+    [SerializeField] private GameObject path;
 
     public static GameManager Instance;
     private void Awake()
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchToShowdownPhase()
     {
+        path.GetComponentInChildren<LineRenderer>().enabled = false;
         followCamera.Priority = 10;
         fixedCamera.Priority = 20;
     }

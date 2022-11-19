@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87828dfe760067b428e7068f1f762a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 0.2
   spawnPoint: {fileID: 8223905556379656004}
   dominoPrefabs:
   - {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
-  dominosCounts: 32000000
+  dominosCounts: 64000000
   minTimeBetweenDominos: 0.15
   dominosCountsTexts:
   - {fileID: 0}
