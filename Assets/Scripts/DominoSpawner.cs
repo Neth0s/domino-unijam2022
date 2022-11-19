@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class DominoSpawner : MonoBehaviour
 {
@@ -11,14 +12,17 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private float minTimeBetweenDominos = 0.1f;
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
-
+    [SerializeField] private CinemachineDollyCart dollyCart;
 
     private float currentTimeBetweenDominos = Mathf.Infinity;
-
     Controls controls;
+    private List<float> distances;
+    private List<int> colors;
 
     private void OnEnable()
     {
+        distances = new List<float>();
+        colors = new List<int>();
         if (dominoPrefabs.Count != dominosCounts.Count)
         {
             Debug.Log("Attention la liste des nombres de dominos n'a pas la même taille que le nombre de prefabs de dominos");
@@ -55,6 +59,8 @@ public class DominoSpawner : MonoBehaviour
             Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position, spawnPoint.rotation);
             currentTimeBetweenDominos = 0;
             dominosCounts[prefabIndex] -= 1;
+            distances.Add(dollyCart.m_Position);
+            colors.Add(prefabIndex);
             if (dominosCountsTexts.Count > prefabIndex)
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
         }
