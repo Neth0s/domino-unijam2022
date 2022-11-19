@@ -106,6 +106,8 @@ public class ScoreResolver : MonoBehaviour
         currentDistanceCombo = 0f;
         score *= errorScoreMultiplier;
         Debug.Log("BadDominoFall");
+
+        lastDominoIndex++;
     }
 
     private void CheckDominoLeftToFall()
