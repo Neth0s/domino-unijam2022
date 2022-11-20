@@ -13,7 +13,7 @@ public class PathDrawer : MonoBehaviour
     [SerializeField] private Vector3 offset;
 
     [SerializeField] private LineRenderer lineRendererPrefab;
-    [SerializeField] private List<LineRenderer> lineRenderers = new List<LineRenderer>();
+    private List<LineRenderer> lineRenderers = new();
 
     [System.Serializable]
     public struct ColorCoef

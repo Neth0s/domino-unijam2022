@@ -7,6 +7,7 @@ public class DominoSpawner : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject dominosParent;
+    [SerializeField] private PathDrawer pathDrawer;
 
     [Header("Dominos")]
     [SerializeField] private List<GameObject> dominoPrefabs;
@@ -31,8 +32,6 @@ public class DominoSpawner : MonoBehaviour
     private List<int> colors;
 
     CinemachineDollyCart dollyCart;
-
-    [SerializeField] PathDrawer pathDrawer;
 
     private void Awake()
     {
