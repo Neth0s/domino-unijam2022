@@ -3161,6 +3161,8 @@ MonoBehaviour:
   levels:
   - sceneId: 1
     sprite: {fileID: 21300000, guid: 4fcc27c1b7c0a5e4daca786fc0eb44b1, type: 3}
+  - sceneId: 2
+    sprite: {fileID: 21300000, guid: 19fbb12914930c74e9c1334cf8d5e05e, type: 3}
   leftArrow: {fileID: 1641349197}
   rightArrow: {fileID: 1403717249}
   image: {fileID: 1230516012}

@@ -12,11 +12,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fallMenu;
     [SerializeField] private GameObject constructionMenu;
     [SerializeField] private GameObject path;
+    
+    [Header("Next Level")]
     [SerializeField] private int nextLevelIndex = 0;
+
+    [Header("End menu")]
     [SerializeField] private EndMenu endMenu;
-    [SerializeField] private TMP_Text endMenuText;
+    [SerializeField] private TMP_Text endMenuScore;
+    [SerializeField] private TMP_Text endMenuDistance;
     [SerializeField] private ScoreResolver scoreResolver;
 
+    [Header("Audio")]
     [SerializeField] List<AudioClip> audioClips = new List<AudioClip>();
     [SerializeField] AudioSource audioSource;
 
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Fader fader;
 
     public static GameManager Instance;
+
     private void Awake()
     {
         Debug.Assert(Instance == null);
@@ -38,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void SwitchToShowdownPhase()
     {
+        audioSource.Stop();
         path.GetComponentInChildren<LineRenderer>().enabled = false;
         constructionMenu.SetActive(false);
         fallMenu.SetActive(true);
@@ -48,8 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowEndMenu(int expressionIndex)
     {
-        if (gameEnded)
-            return;
+        if (gameEnded) return;
         gameEnded = true;
         StartCoroutine(ShowEndMenuRoutine(expressionIndex));
     }
@@ -57,12 +64,16 @@ public class GameManager : MonoBehaviour
     private IEnumerator ShowEndMenuRoutine(int expressionIndex)
     {
         yield return new WaitForSeconds(.1f);
+        
         endMenu.gameObject.SetActive(true);
         endMenu.ShowResult(expressionIndex);
-        endMenuText.SetText("Dorothy's happiness: " + ((int)scoreResolver.Score).ToString());
+        endMenuScore.SetText("Dorothy's happiness: " + scoreResolver.Score);
+        endMenuDistance.SetText("You made " + scoreResolver.TotalDistance.ToString("0.00") + "m of dominos!");
+        
         audioSource.clip = audioClips[expressionIndex];
         audioSource.Play();
-        fallMenu.gameObject.SetActive(false);
+
+        fallMenu.SetActive(false);
     }
 
     public void TryAgain()
