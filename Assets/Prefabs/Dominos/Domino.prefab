@@ -312,7 +312,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700973727457296674}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7700973727457296678
 GameObject:
@@ -331,6 +331,8 @@ GameObject:
   - component: {fileID: 2130814248617997804}
   - component: {fileID: 6623467842389052706}
   - component: {fileID: 2613736703702764500}
+  - component: {fileID: 325230143001015118}
+  - component: {fileID: 7598626930016679103}
   m_Layer: 0
   m_Name: Domino
   m_TagString: Domino
@@ -352,8 +354,8 @@ Transform:
   m_Children:
   - {fileID: 8038260118526202372}
   - {fileID: 1239889680535930449}
-  - {fileID: 7835218610680145465}
   - {fileID: 5421859212442999318}
+  - {fileID: 7835218610680145465}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -414,12 +416,12 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7700973727457296678}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 057132b67b86021439a73f7122f084ca, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.045181204, z: 0.6867392}
+  m_Center: {x: 0, y: -0.47741112, z: 0}
 --- !u!54 &7644620630392922204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -571,6 +573,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7598626930016679103}
+        m_TargetAssemblyTypeName: LockRotationForATime, Assembly-CSharp
+        m_MethodName: Unlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6623467842389052706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +615,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 8463950960523015260, guid: 1ea766864f313b44bb19d850b902c5c0, type: 3}
   placeParticleTransform: {fileID: 7835218610680145465}
+--- !u!65 &325230143001015118
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700973727457296678}
+  m_Material: {fileID: 13400000, guid: 057132b67b86021439a73f7122f084ca, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.9538551, z: 1}
+  m_Center: {x: 0, y: 0.023072708, z: 0}
+--- !u!114 &7598626930016679103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700973727457296678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80aee1c75ad47f41be663e8e2924143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.5
 --- !u!1 &8494796092930353572
 GameObject:
   m_ObjectHideFlags: 0
