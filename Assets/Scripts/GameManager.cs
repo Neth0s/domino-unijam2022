@@ -45,8 +45,9 @@ public class GameManager : MonoBehaviour
 
     public void SwitchToShowdownPhase()
     {
+        foreach (var line in path.GetComponentsInChildren<LineRenderer>()) line.enabled = false;
+
         audioSource.Stop();
-        path.GetComponentInChildren<LineRenderer>().enabled = false;
         constructionMenu.SetActive(false);
         fallMenu.SetActive(true);
 
