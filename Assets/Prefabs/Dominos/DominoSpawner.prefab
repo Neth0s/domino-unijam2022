@@ -53,7 +53,7 @@ MonoBehaviour:
   - {fileID: 736647212686189541, guid: 0d03fd8ffb22cb7448d0c12628faa1de, type: 3}
   - {fileID: 736647212686189541, guid: ba671e7851358a146ad7ede0fc491464, type: 3}
   - {fileID: 736647212686189541, guid: 600e1f8976750dc4ab421465bd22ba29, type: 3}
-  dominosCounts: 14000000000000000000000000000000
+  dominosCounts: 50000000000000000000000000000000
   dominosCountsTexts:
   - {fileID: 0}
   - {fileID: 0}
