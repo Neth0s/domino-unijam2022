@@ -58,6 +58,7 @@ public class ScoreResolver : MonoBehaviour
         button.SetActive(false);
         scoreText.gameObject.SetActive(true);
 
+        DominoCollideDomino.PitchCoefficient = 0;
         isResolving = true;
         fallenDominosTags = new bool[dominosParent.transform.childCount];
         clock = maxTimeBetweenFalls;
@@ -117,7 +118,8 @@ public class ScoreResolver : MonoBehaviour
     private void OnNotGoodColorDominoFall(Domino domino)
     {
         currentDistanceCombo = 0f;
-        Debug.Log("NotGoodColorDominoFall");
+        DominoCollideDomino.PitchCoefficient = 0;
+        Debug.Log("Wrong color");
     }
 
     private void OnBadDominoFall()
@@ -126,6 +128,7 @@ public class ScoreResolver : MonoBehaviour
         score *= errorScoreMultiplier;
         Debug.Log("BadDominoFall");
 
+        DominoCollideDomino.PitchCoefficient = 0;
         lastDominoIndex++;
     }
 

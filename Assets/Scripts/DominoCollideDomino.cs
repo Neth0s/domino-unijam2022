@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DominoCollideDomino : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource audioSourceCrisp;
+    [SerializeField] AudioSource audioSourcePitch;
 
     [SerializeField] List<AudioClip> audioClips;
 
@@ -16,10 +17,13 @@ public class DominoCollideDomino : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Domino"))
         {
-            audioSource.clip = audioClips[Random.Range(0, audioClips.Count - 1)];
             PitchCoefficient += pitchCoefficientIncrement;
-            audioSource.pitch = pitchCurve.Evaluate(PitchCoefficient);
-            audioSource.Play();
+            audioSourcePitch.pitch = 0.8f + pitchCurve.Evaluate(PitchCoefficient);
+            audioSourcePitch.Play();
+
+            audioSourceCrisp.clip = audioClips[Random.Range(0, audioClips.Count - 1)];
+            audioSourceCrisp.Play();
+
             Destroy(this);
         }
     }
