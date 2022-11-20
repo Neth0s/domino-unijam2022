@@ -8,6 +8,8 @@ public class DominoCollideGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "IgnoreSound")
+            return;
         if(!other.gameObject.CompareTag("Domino"))
         {
             audioSource.Play();

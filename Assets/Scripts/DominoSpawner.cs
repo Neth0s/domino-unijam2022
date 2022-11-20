@@ -36,7 +36,6 @@ public class DominoSpawner : MonoBehaviour
 
     CinemachineDollyCart dollyCart;
 
-    [SerializeField] PathDrawer pathDrawer;
 
     private MeshRenderer shadowMeshRenderer;
     private Material shadowMaterial;
@@ -84,7 +83,7 @@ public class DominoSpawner : MonoBehaviour
     private void Update()
     {
         currentTimeBetweenDominos += Time.deltaTime;
-
+        print(SpaceAvailable());
         if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
         lastPosition = dollyCart.m_Position;
         shadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
@@ -92,6 +91,8 @@ public class DominoSpawner : MonoBehaviour
 
     private void Spawn(int prefabIndex)
     {
+        if (!SpaceAvailable())
+            return;
         if (!dollyCartStarted)
         {
             dollyCartStarted = true;
@@ -118,19 +119,19 @@ public class DominoSpawner : MonoBehaviour
         
         if (dominosRemaining <= 0) PlacingPhaseFinished();
     }
-
     private bool SpaceAvailable()
     {
-        bool m_HitDetect;
-        RaycastHit m_Hit;
-        m_HitDetect = Physics.BoxCast(shadowCollider.bounds.center, transform.localScale, transform.forward, out m_Hit, transform.rotation);
-        if (m_HitDetect)
+        Collider[] hitColliders = Physics.OverlapBox(shadowCollider.bounds.center, shadowCollider.bounds.extents, transform.rotation);
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            Debug.Log("Hit : " + m_Hit.collider.name);
+            if (hitColliders[i].gameObject != shadowCollider.gameObject)
+            {
+                return false;
+            }
         }
-        return m_HitDetect;
-
+        return true;
     }
+  
 
     private void PlacingPhaseFinished()
     {

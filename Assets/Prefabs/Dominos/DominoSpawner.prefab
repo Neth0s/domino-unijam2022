@@ -66,9 +66,11 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
   disabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+  shadowCollider: {fileID: 7027921628459681795}
   speed: 0.25
   minTimeBetweenDominos: 0.1
-  spawnOffset: {x: 0, y: 0.3, z: 0}
+  spawnOffset: {x: 0, y: 0.4, z: 0}
+  shadowRedMaterial: {fileID: 2100000, guid: c11d3d9d87b4bdc4b9ae137c8001ff68, type: 2}
 --- !u!114 &3620057964878819710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,9 +99,10 @@ GameObject:
   - component: {fileID: 5789405583385819789}
   - component: {fileID: 3402127926921571770}
   - component: {fileID: 4194502253780806354}
+  - component: {fileID: 7027921628459681795}
   m_Layer: 0
   m_Name: DominoSpawner Shadow
-  m_TagString: Untagged
+  m_TagString: IgnoreSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,3 +172,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7027921628459681795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4281831279662254510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9999999, y: 0.80474406, z: 1}
+  m_Center: {x: 0, y: 0.09762815, z: 0}
