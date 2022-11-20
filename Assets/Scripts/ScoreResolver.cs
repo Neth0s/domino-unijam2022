@@ -26,15 +26,20 @@ public class ScoreResolver : MonoBehaviour
     bool[] fallenDominosTags;
 
     private float score = 0;
-    public float Score { get => score; }
     private float errors = 0;
     private float clock = 0;
 
     bool isResolving = false;
+    bool lastDominoFellCorrectly = false;
 
     int lastDominoIndex = -1;
-    float lastDistance = 0f;
-    float currentDistanceCombo = 0f;
+    int correctCombo = 1;
+
+    float lastDominoDistance = 0;
+    float totalCorrectDistance = 0f;
+
+    public float Score { get => score; }
+    public float TotalDistance { get => totalCorrectDistance; }
 
     private void OnEnable()
     {
@@ -92,6 +97,7 @@ public class ScoreResolver : MonoBehaviour
         }
 
         lastDominoIndex = domino.Index;
+        lastDominoDistance = domino.Distance;
 
         girlExpressionImage.sprite = faceExpressions[getExpressionIndex()];
     }
@@ -112,21 +118,28 @@ public class ScoreResolver : MonoBehaviour
 
     private void OnCorrectFall(Domino domino)
     {
-        float distanceDelta = domino.Distance - lastDistance;
-        if (currentDistanceCombo != 0f) score += scoreMultiplier * distanceDelta;
-        currentDistanceCombo += distanceDelta;
+        float distanceDelta = domino.Distance - lastDominoDistance;
+
+        score += scoreMultiplier * correctCombo * distanceDelta;
+        correctCombo++;
+
+        if (lastDominoFellCorrectly) totalCorrectDistance += distanceDelta;
+        lastDominoFellCorrectly = true;
     }
 
     private void OnWrongColor(Domino domino)
     {
-        currentDistanceCombo = 0f;
+        correctCombo = 1;
+        lastDominoFellCorrectly = false;
+
         DominoCollideDomino.PitchCoefficient = 0;
         Debug.Log("Wrong color");
     }
 
     private void OnBadFall()
     {
-        currentDistanceCombo = 0f;
+        correctCombo = 1;
+        lastDominoFellCorrectly = false;
         score *= errorScoreMultiplier;
         Debug.Log("Bad fall");
 
@@ -143,8 +156,7 @@ public class ScoreResolver : MonoBehaviour
             if(!fallenDominosTags[i])
             {
                 clock = maxTimeBetweenFalls;
-                if (errors < 3)
-                    OnBadFall();
+                if (errors < 3) OnBadFall();
 
                 Showdown(i);
                 return;
