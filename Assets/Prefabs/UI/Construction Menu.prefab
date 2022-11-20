@@ -1301,6 +1301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5442415329159731339}
+  - component: {fileID: 6116447258647367879}
   m_Layer: 5
   m_Name: Construction Menu
   m_TagString: Untagged
@@ -1329,3 +1330,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6116447258647367879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359123189892341000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371daf9ec371cd7428f3be1c578d2438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dominoKeyTexts:
+  - {fileID: 979643880382290890}
+  - {fileID: 979643880803981077}
+  - {fileID: 979643881006140627}
+  - {fileID: 979643880848554787}
+  dominosCountsTexts:
+  - {fileID: 979643879727587400}
+  - {fileID: 979643880242752307}
+  - {fileID: 979643880347642759}
+  - {fileID: 979643879699935790}
+  dominoColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}

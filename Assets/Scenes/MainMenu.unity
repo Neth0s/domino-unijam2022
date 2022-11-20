@@ -671,7 +671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.999981, y: -123.99999}
+  m_AnchoredPosition: {x: -2, y: -81}
   m_SizeDelta: {x: 1600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161970135
@@ -1319,7 +1319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 334}
+  m_AnchoredPosition: {x: 0.000030517578, y: 367.38}
   m_SizeDelta: {x: 885.134, y: 184.067}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503733303
@@ -3356,7 +3356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -445, y: -59}
+  m_AnchoredPosition: {x: -442, y: -15.999977}
   m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1171606285
@@ -3797,7 +3797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -395, y: -171}
+  m_AnchoredPosition: {x: -399, y: -123}
   m_SizeDelta: {x: 315.586, y: 124.738}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1252968173
@@ -3932,7 +3932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: -5, y: 151}
   m_SizeDelta: {x: 1600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257383039
@@ -4435,8 +4435,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.999981, y: -286}
-  m_SizeDelta: {x: 1600, y: 200}
+  m_AnchoredPosition: {x: -4.999981, y: -218.514}
+  m_SizeDelta: {x: 1600, y: 139.774}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395403065
 MonoBehaviour:
@@ -4458,7 +4458,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold                            to place long dominos for the cost of 2.
+  m_text: 'Hold                            to place long dominos for the cost of
+    2.
+
+    Long dominos are very useful to overcome obstacles !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec9f003785d38c8439d20b685d1f08d7, type: 2}
   m_sharedMaterial: {fileID: -6366141750360471555, guid: ec9f003785d38c8439d20b685d1f08d7, type: 2}

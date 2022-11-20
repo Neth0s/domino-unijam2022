@@ -45,8 +45,9 @@ public class GameManager : MonoBehaviour
 
     public void SwitchToShowdownPhase()
     {
+        foreach (var line in path.GetComponentsInChildren<LineRenderer>()) line.enabled = false;
+
         audioSource.Stop();
-        path.GetComponentInChildren<LineRenderer>().enabled = false;
         constructionMenu.SetActive(false);
         fallMenu.SetActive(true);
 
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
         
         endMenu.gameObject.SetActive(true);
         endMenu.ShowResult(expressionIndex);
-        endMenuScore.SetText("Dorothy's happiness: " + scoreResolver.Score);
+        endMenuScore.SetText("Dorothy's happiness: " + (int)scoreResolver.Score);
         endMenuDistance.SetText("You made " + scoreResolver.TotalDistance.ToString("0.00") + "m of dominos!");
         
         audioSource.clip = audioClips[expressionIndex];
