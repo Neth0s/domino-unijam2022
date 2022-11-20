@@ -14,11 +14,14 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
     [SerializeField] private List<Color> dominoColors;
     [SerializeField] private Color disabledColor;
+    [SerializeField] private BoxCollider shadowCollider;
 
     [Header("Parameters")]
     [SerializeField] float speed = 0.3f;
     [SerializeField] private float minTimeBetweenDominos = 0.1f;
     [SerializeField] private Vector3 spawnOffset = new (0, 0.3f, 0);
+    [SerializeField] private Material shadowRedMaterial;
+
 
     private int dominoIndex = 0;
     private float lastPosition = -1;
@@ -34,10 +37,15 @@ public class DominoSpawner : MonoBehaviour
 
     [SerializeField] PathDrawer pathDrawer;
 
+    private MeshRenderer shadowMeshRenderer;
+    private Material shadowMaterial;
+
     private void Awake()
     {
         for (int i = 0; i < dominosCounts.Count; i++) dominosRemaining += dominosCounts[i];
         dollyCart = GetComponent<CinemachineDollyCart>();
+        shadowMeshRenderer = shadowCollider.GetComponent<MeshRenderer>();
+        shadowMaterial = shadowMeshRenderer.material;
     }
 
     private void OnEnable()
@@ -78,6 +86,7 @@ public class DominoSpawner : MonoBehaviour
 
         if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
         lastPosition = dollyCart.m_Position;
+        shadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
     }
 
     private void Spawn(int prefabIndex)
@@ -107,6 +116,19 @@ public class DominoSpawner : MonoBehaviour
         }
         
         if (dominosRemaining <= 0) PlacingPhaseFinished();
+    }
+
+    private bool SpaceAvailable()
+    {
+        bool m_HitDetect;
+        RaycastHit m_Hit;
+        m_HitDetect = Physics.BoxCast(shadowCollider.bounds.center, transform.localScale, transform.forward, out m_Hit, transform.rotation);
+        if (m_HitDetect)
+        {
+            Debug.Log("Hit : " + m_Hit.collider.name);
+        }
+        return m_HitDetect;
+
     }
 
     private void PlacingPhaseFinished()
