@@ -175,7 +175,7 @@ MonoBehaviour:
   fallMenu: {fileID: 6743911004173999257}
   constructionMenu: {fileID: 2887656323357297239}
   path: {fileID: 3675498087106151864}
-  nextLevelIndex: 2
+  nextLevelIndex: 4
   endMenu: {fileID: 5807128943339604783}
   endMenuScore: {fileID: 4796484762544095228}
   endMenuDistance: {fileID: 8000510792694915931}

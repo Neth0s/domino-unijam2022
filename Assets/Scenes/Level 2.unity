@@ -1913,6 +1913,10 @@ PrefabInstance:
       propertyPath: dominoColors.Array.data[2].r
       value: 0.09868278
       objectReference: {fileID: 0}
+    - target: {fileID: 1801004743714905700, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
+      propertyPath: longDominoPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4861008313136908990, guid: 90e03c3e95167ed47b7778913d6139e1, type: 3}
     - target: {fileID: 1932646555481180056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: dominoColors.Array.data[0].b
       value: 0.15294118
@@ -2635,11 +2639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977182386100, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19332492
+      value: 0.19332494
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977182386100, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0502161
+      value: -0.050216105
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2663,11 +2667,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19332492
+      value: 0.19332494
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0502161
+      value: -0.050216105
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005057, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: near clip plane

@@ -2635,11 +2635,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977182386100, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19332494
+      value: 0.19332492
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977182386100, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.050216105
+      value: -0.0502161
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2663,11 +2663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19332494
+      value: 0.19332492
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.050216105
+      value: -0.0502161
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977354005057, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: near clip plane
