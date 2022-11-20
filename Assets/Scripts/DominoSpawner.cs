@@ -11,6 +11,7 @@ public class DominoSpawner : MonoBehaviour
 
     [Header("Dominos")]
     [SerializeField] private List<GameObject> dominoPrefabs;
+    [SerializeField] private List<GameObject> longDominoPrefabs;
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
     [SerializeField] private List<Color> dominoColors;
@@ -83,7 +84,6 @@ public class DominoSpawner : MonoBehaviour
     private void Update()
     {
         currentTimeBetweenDominos += Time.deltaTime;
-        print(SpaceAvailable());
         if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
         lastPosition = dollyCart.m_Position;
         shadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
@@ -102,11 +102,14 @@ public class DominoSpawner : MonoBehaviour
 
         if (currentTimeBetweenDominos > minTimeBetweenDominos)
         {
-            var dominoInstance = Instantiate(dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation, dominosParent.transform);
+            bool longDomino = false;
+            if (controls.Player.LongDomino.ReadValue<float>() > 0 && dominosCounts[prefabIndex] >= 2)
+                longDomino = true;
+            var dominoInstance = Instantiate(longDomino ? longDominoPrefabs[prefabIndex] : dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation, dominosParent.transform);
             
             currentTimeBetweenDominos = 0;
-            dominosCounts[prefabIndex] -= 1;
-            dominosRemaining -= 1;
+            dominosCounts[prefabIndex] -= longDomino ? 2 : 1;
+            dominosRemaining -= longDomino ? 2 : 1;
             distances.Add(dollyCart.m_Position);
             colors.Add(prefabIndex);
             

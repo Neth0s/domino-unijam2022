@@ -62,6 +62,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LongDomino"",
+                    ""type"": ""Button"",
+                    ""id"": ""9b0d1665-dcde-45de-88ae-6b78367e97ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""PlaceColor4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""028dca19-53ac-4298-bdc7-75979bccc9d5"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LongDomino"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -120,6 +140,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_PlaceColor2 = m_Player.FindAction("PlaceColor2", throwIfNotFound: true);
         m_Player_PlaceColor3 = m_Player.FindAction("PlaceColor3", throwIfNotFound: true);
         m_Player_PlaceColor4 = m_Player.FindAction("PlaceColor4", throwIfNotFound: true);
+        m_Player_LongDomino = m_Player.FindAction("LongDomino", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +204,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PlaceColor2;
     private readonly InputAction m_Player_PlaceColor3;
     private readonly InputAction m_Player_PlaceColor4;
+    private readonly InputAction m_Player_LongDomino;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -191,6 +213,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @PlaceColor2 => m_Wrapper.m_Player_PlaceColor2;
         public InputAction @PlaceColor3 => m_Wrapper.m_Player_PlaceColor3;
         public InputAction @PlaceColor4 => m_Wrapper.m_Player_PlaceColor4;
+        public InputAction @LongDomino => m_Wrapper.m_Player_LongDomino;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -212,6 +235,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @PlaceColor4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor4;
                 @PlaceColor4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor4;
                 @PlaceColor4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlaceColor4;
+                @LongDomino.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLongDomino;
+                @LongDomino.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLongDomino;
+                @LongDomino.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLongDomino;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -228,6 +254,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @PlaceColor4.started += instance.OnPlaceColor4;
                 @PlaceColor4.performed += instance.OnPlaceColor4;
                 @PlaceColor4.canceled += instance.OnPlaceColor4;
+                @LongDomino.started += instance.OnLongDomino;
+                @LongDomino.performed += instance.OnLongDomino;
+                @LongDomino.canceled += instance.OnLongDomino;
             }
         }
     }
@@ -238,5 +267,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPlaceColor2(InputAction.CallbackContext context);
         void OnPlaceColor3(InputAction.CallbackContext context);
         void OnPlaceColor4(InputAction.CallbackContext context);
+        void OnLongDomino(InputAction.CallbackContext context);
     }
 }
