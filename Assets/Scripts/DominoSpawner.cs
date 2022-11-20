@@ -9,15 +9,15 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private GameObject dominosParent;
     [SerializeField] private PathDrawer pathDrawer;
 
+    [Header("Shadow")]
+    [SerializeField] private BoxCollider shadowCollider;
+    [SerializeField] private BoxCollider longShadowCollider;
     [Header("Dominos")]
     [SerializeField] private List<GameObject> dominoPrefabs;
     [SerializeField] private List<GameObject> longDominoPrefabs;
     [SerializeField] private List<int> dominosCounts;
     [SerializeField] private List<TextMeshProUGUI> dominosCountsTexts;
-    [SerializeField] private List<Color> dominoColors;
     [SerializeField] private Color disabledColor;
-    [SerializeField] private BoxCollider shadowCollider;
-    [SerializeField] private BoxCollider longShadowCollider;
 
     [Header("Parameters")]
     [SerializeField] float speed = 0.3f;
@@ -128,7 +128,10 @@ public class DominoSpawner : MonoBehaviour
             colors.Add(prefabIndex);
             
             if (dominosCountsTexts.Count > prefabIndex)
+            {
                 dominosCountsTexts[prefabIndex].text = dominosCounts[prefabIndex].ToString();
+                if (dominosCounts[prefabIndex] == 0) dominosCountsTexts[prefabIndex].color = disabledColor;
+            }
 
             dominoInstance.GetComponent<Domino>().Init(dominoIndex, dollyCart.m_Position, dollyCart.m_Position / dollyCart.m_Path.PathLength, pathDrawer);
             dominoIndex++;
