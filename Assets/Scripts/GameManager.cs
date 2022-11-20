@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         endMenu.gameObject.SetActive(true);
         endMenu.ShowResult(expressionIndex);
+        fallMenu.gameObject.SetActive(false);
     }
 
     public void TryAgain()
