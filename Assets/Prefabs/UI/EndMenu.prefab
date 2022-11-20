@@ -335,19 +335,19 @@ MonoBehaviour:
   possibleResults:
   - sprite: {fileID: 21300000, guid: 1c39eca5592ff7a4c808996d1f8567db, type: 3}
     text: You suck daddy
-    color: {r: 0.63887596, g: 0, b: 1, a: 1}
+    color: {r: 0.7254902, g: 0, b: 0.089916214, a: 1}
   - sprite: {fileID: 21300000, guid: 4f17e0b1e47e3124b87a0eb82882db3a, type: 3}
     text: At least you tried...
-    color: {r: 0.84479934, g: 0.6497864, b: 0.9245283, a: 1}
+    color: {r: 0.53243846, g: 0.18039213, b: 0.7176471, a: 1}
   - sprite: {fileID: 21300000, guid: 7d0f36d7a61727248a3cb25454ee651b, type: 3}
     text: Thanks papa
-    color: {r: 0.5101103, g: 0.8396226, b: 0.6612479, a: 1}
+    color: {r: 0.18536842, g: 0.36418337, b: 0.7735849, a: 1}
   - sprite: {fileID: 21300000, guid: 84546dad90104254e8e1d6c07913a8a9, type: 3}
     text: Wow, so cool Dad !
-    color: {r: 0.5058824, g: 0.8654779, b: 0.93333334, a: 1}
+    color: {r: 0.5310394, g: 0.8490566, b: 0.3236027, a: 1}
   - sprite: {fileID: 21300000, guid: 719df1d86d0f29b499e2e42040fb3f6a, type: 3}
     text: Amazing, I love you Daddy!
-    color: {r: 0.9764706, g: 0.8, b: 0.25490198, a: 1}
+    color: {r: 1, g: 0.75543475, b: 0, a: 1}
   text: {fileID: 134008888243373519}
   image: {fileID: 134008887937839836}
 --- !u!1 &134008888243373518

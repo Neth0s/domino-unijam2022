@@ -6,23 +6,20 @@ using UnityEngine.Events;
 
 public class Domino : MonoBehaviour
 {
-    public int Index { get; private set; }
-    public float Distance { get; private set; }
-
-    float normalizedDistance;
-
     [SerializeField] float fallHeightThreshold = 0.01f;
-    float initialHeight;
-
-    public static Action<Domino> OnFall;
     [SerializeField] UnityEvent OnFallUnityEvent;
 
+    public static Action<Domino> OnFall;
+
+    public int Index { get; private set; }
+    public float Distance { get; private set; }
     public bool HasFallen { get; private set; }
-
-    PathDrawer pathDrawer;
-
     public bool HasGoodColor { get; private set; }
 
+    float normalizedDistance;
+    float initialHeight;
+
+    PathDrawer pathDrawer;
     Renderer rend;
 
     private void Awake()
