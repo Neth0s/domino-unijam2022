@@ -50,26 +50,25 @@ MonoBehaviour:
   spawnPoint: {fileID: 2054576569261695700}
   dominosParent: {fileID: 0}
   pathDrawer: {fileID: 0}
+  shadowCollider: {fileID: 7027921628459681795}
+  longShadowCollider: {fileID: 4813469882055190144}
   dominoPrefabs:
   - {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
   - {fileID: 736647212686189541, guid: 0d03fd8ffb22cb7448d0c12628faa1de, type: 3}
   - {fileID: 736647212686189541, guid: ba671e7851358a146ad7ede0fc491464, type: 3}
   - {fileID: 736647212686189541, guid: 600e1f8976750dc4ab421465bd22ba29, type: 3}
-  longDominoPrefabs: []
+  longDominoPrefabs:
+  - {fileID: 4861008313136908990, guid: 90e03c3e95167ed47b7778913d6139e1, type: 3}
+  - {fileID: 8772124732382945885, guid: 43bccb1da5fbcee4da6f180d61cb15cf, type: 3}
+  - {fileID: 6026903201210187963, guid: e6e92cb79a6010246a57d85f5d64b902, type: 3}
+  - {fileID: 3804552928710499917, guid: 378fee54b4dd14245aea36c63a522f5e, type: 3}
   dominosCounts: 41000000000000000000000000000000
   dominosCountsTexts:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  dominoColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 1, g: 1, b: 0, a: 1}
   disabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
-  shadowCollider: {fileID: 7027921628459681795}
-  longShadowCollider: {fileID: 4813469882055190144}
   speed: 0.25
   minTimeBetweenDominos: 0.1
   spawnOffset: {x: 0, y: 0.4, z: 0}
