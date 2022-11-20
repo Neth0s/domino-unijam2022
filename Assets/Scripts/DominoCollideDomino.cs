@@ -12,6 +12,8 @@ public class DominoCollideDomino : MonoBehaviour
     [SerializeField] AnimationCurve pitchCurve;
     [SerializeField] float pitchCoefficientIncrement = 0.02f;
     public static float PitchCoefficient;
+    [SerializeField] private DominoParticles dominoParticles;
+    [SerializeField] private Transform topPoint;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +25,10 @@ public class DominoCollideDomino : MonoBehaviour
 
             audioSourceCrisp.clip = audioClips[Random.Range(0, audioClips.Count - 1)];
             audioSourceCrisp.Play();
-
+            if (dominoParticles)
+            {
+                dominoParticles.CollislionParticles(other.ClosestPoint(topPoint.position));
+            }
             Destroy(this);
         }
     }
