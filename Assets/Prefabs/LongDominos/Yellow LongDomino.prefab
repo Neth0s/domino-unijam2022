@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3246620ec26284a459e600ab04910500, type: 2}
     - target: {fileID: 8772124732382945885, guid: 43bccb1da5fbcee4da6f180d61cb15cf, type: 3}
       propertyPath: m_Name
-      value: Yellow LongDomino Variant
+      value: Yellow LongDomino
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43bccb1da5fbcee4da6f180d61cb15cf, type: 3}

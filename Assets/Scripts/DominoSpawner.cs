@@ -17,6 +17,7 @@ public class DominoSpawner : MonoBehaviour
     [SerializeField] private List<Color> dominoColors;
     [SerializeField] private Color disabledColor;
     [SerializeField] private BoxCollider shadowCollider;
+    [SerializeField] private BoxCollider longShadowCollider;
 
     [Header("Parameters")]
     [SerializeField] float speed = 0.3f;
@@ -39,6 +40,7 @@ public class DominoSpawner : MonoBehaviour
 
 
     private MeshRenderer shadowMeshRenderer;
+    private MeshRenderer longShadowMeshRenderer;
     private Material shadowMaterial;
 
     private void Awake()
@@ -46,6 +48,7 @@ public class DominoSpawner : MonoBehaviour
         for (int i = 0; i < dominosCounts.Count; i++) dominosRemaining += dominosCounts[i];
         dollyCart = GetComponent<CinemachineDollyCart>();
         shadowMeshRenderer = shadowCollider.GetComponent<MeshRenderer>();
+        longShadowMeshRenderer = longShadowCollider.GetComponent<MeshRenderer>();
         shadowMaterial = shadowMeshRenderer.material;
     }
 
@@ -87,6 +90,17 @@ public class DominoSpawner : MonoBehaviour
         if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
         lastPosition = dollyCart.m_Position;
         shadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
+        longShadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
+        if (controls.Player.LongDomino.ReadValue<float>() > 0)
+        {
+            shadowCollider.gameObject.SetActive(false);
+            longShadowCollider.gameObject.SetActive(true);
+        }
+        else
+        {
+            shadowCollider.gameObject.SetActive(true);
+            longShadowCollider.gameObject.SetActive(false);
+        }
     }
 
     private void Spawn(int prefabIndex)
@@ -124,14 +138,30 @@ public class DominoSpawner : MonoBehaviour
     }
     private bool SpaceAvailable()
     {
-        Collider[] hitColliders = Physics.OverlapBox(shadowCollider.bounds.center, shadowCollider.bounds.extents, transform.rotation);
-        for (int i = 0; i < hitColliders.Length; i++)
+        Collider[] hitColliders;
+        if (controls.Player.LongDomino.ReadValue<float>() > 0)
         {
-            if (hitColliders[i].gameObject != shadowCollider.gameObject)
+            hitColliders = Physics.OverlapBox(longShadowCollider.bounds.center, longShadowCollider.bounds.extents, transform.rotation);
+            for (int i = 0; i < hitColliders.Length; i++)
             {
-                return false;
+                if (hitColliders[i].gameObject != longShadowCollider.gameObject && hitColliders[i].gameObject.tag != "IgnoreSound")
+                {
+                    return false;
+                }
             }
         }
+        else
+        {
+            hitColliders = Physics.OverlapBox(shadowCollider.bounds.center, shadowCollider.bounds.extents, transform.rotation);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                if (hitColliders[i].gameObject != shadowCollider.gameObject && hitColliders[i].gameObject.tag != "IgnoreSound")
+                {
+                    return false;
+                }
+            }
+        }
+        
         return true;
     }
   

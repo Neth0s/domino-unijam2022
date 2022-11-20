@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7795183391429657282, guid: 6ef898d981b67ea40832ddd5d6fa42db, type: 3}
+      propertyPath: m_Mass
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7847085595631592376, guid: 6ef898d981b67ea40832ddd5d6fa42db, type: 3}
       propertyPath: m_Name
       value: Brown LongDomino Variant
