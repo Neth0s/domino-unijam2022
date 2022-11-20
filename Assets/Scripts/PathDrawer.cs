@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class PathDrawer : MonoBehaviour
 {
-    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private LineRenderer lineRendererPrefab;
     [SerializeField] private CinemachineDollyCart dollyCart;
-    [SerializeField] private int points = 100;
 
+    [Header("Parameters")]
+    [SerializeField] private int points = 100;
     [SerializeField] private Vector3 offset;
 
-    [SerializeField] private LineRenderer lineRendererPrefab;
-    [SerializeField] private List<LineRenderer> lineRenderers = new List<LineRenderer>();
+    private List<LineRenderer> lineRenderers = new();
 
     [System.Serializable]
     public struct ColorCoef

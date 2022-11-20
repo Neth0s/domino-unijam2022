@@ -48,12 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2054576569261695700}
   dominosParent: {fileID: 0}
+  pathDrawer: {fileID: 0}
   dominoPrefabs:
   - {fileID: 7700973727457296678, guid: 0ee9775b0e157db479a45f2b64e59b95, type: 3}
   - {fileID: 736647212686189541, guid: 0d03fd8ffb22cb7448d0c12628faa1de, type: 3}
   - {fileID: 736647212686189541, guid: ba671e7851358a146ad7ede0fc491464, type: 3}
   - {fileID: 736647212686189541, guid: 600e1f8976750dc4ab421465bd22ba29, type: 3}
-  dominosCounts: 14000000000000000000000000000000
+  dominosCounts: 41000000000000000000000000000000
   dominosCountsTexts:
   - {fileID: 0}
   - {fileID: 0}
@@ -65,10 +66,9 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 1, b: 0, a: 1}
   disabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
-  speed: 0.2
-  minTimeBetweenDominos: 0.25
+  speed: 0.25
+  minTimeBetweenDominos: 0.1
   spawnOffset: {x: 0, y: 0.3, z: 0}
-  pathDrawer: {fileID: 0}
 --- !u!114 &3620057964878819710
 MonoBehaviour:
   m_ObjectHideFlags: 0

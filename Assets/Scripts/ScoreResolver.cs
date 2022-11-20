@@ -12,6 +12,7 @@ public class ScoreResolver : MonoBehaviour
     [SerializeField] GameObject button;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] Image girlExpressionImage;
+    [SerializeField] private List<Sprite> faceExpressions;
 
     [Header ("Parameters")]
     [SerializeField] float maxTimeBetweenFalls = 1f;
@@ -19,7 +20,6 @@ public class ScoreResolver : MonoBehaviour
     [SerializeField] float errorScoreMultiplier = 0.5f;
     [SerializeField] float showdownTorque = 100f;
     [SerializeField] Vector4 expressionThreshold = new(10, 20, 30, 40);
-    [SerializeField] private List<Sprite> faceExpressions;
 
     static public Action OnStartScoreResolution;
 
