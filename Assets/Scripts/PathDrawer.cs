@@ -59,6 +59,7 @@ public class PathDrawer : MonoBehaviour
         {
             int colorPointCount = Mathf.CeilToInt(colorCoefs[i].coefficient * points);
             LineRenderer currentLine = Instantiate(lineRendererPrefab, Vector3.zero, Quaternion.Euler(90, 0, 0), transform);
+            currentLine.enabled = false;
             
             currentLine.positionCount = colorPointCount + 1;
             segment = colorCoefs[i].coefficient / colorPointCount;
@@ -77,7 +78,6 @@ public class PathDrawer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
                 currentLine.SetPosition(j, dollyCart.transform.position + offset);
             }
-            currentLine.enabled = false;
             lineRenderers.Add(currentLine);
         }
 

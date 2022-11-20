@@ -26,6 +26,7 @@ public class ScoreResolver : MonoBehaviour
     bool[] fallenDominosTags;
 
     private float score = 0;
+    public float Score { get => score; }
     private float errors = 0;
     private float clock = 0;
 
@@ -53,7 +54,7 @@ public class ScoreResolver : MonoBehaviour
             if (clock <= 0) CheckDominoLeftToFall();
         }
 
-        scoreText.text = ((int)score).ToString();
+        scoreText.text = "Dorothy's happiness: " + ((int)score).ToString();
     }
 
     public void StartScoreResolution()

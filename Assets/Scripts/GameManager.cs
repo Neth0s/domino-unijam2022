@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject path;
     [SerializeField] private int nextLevelIndex = 0;
     [SerializeField] private EndMenu endMenu;
+    [SerializeField] private TMP_Text endMenuText;
+    [SerializeField] private ScoreResolver scoreResolver;
+
+    [SerializeField] List<AudioClip> audioClips = new List<AudioClip>();
+    [SerializeField] AudioSource audioSource;
 
     private bool gameEnded = false;
     private Fader fader;
@@ -50,9 +56,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowEndMenuRoutine(int expressionIndex)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.1f);
         endMenu.gameObject.SetActive(true);
         endMenu.ShowResult(expressionIndex);
+        endMenuText.SetText("Dorothy's happiness: " + ((int)scoreResolver.Score).ToString());
+        audioSource.clip = audioClips[expressionIndex];
+        audioSource.Play();
         fallMenu.gameObject.SetActive(false);
     }
 
