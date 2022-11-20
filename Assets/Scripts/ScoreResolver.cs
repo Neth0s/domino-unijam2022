@@ -90,7 +90,6 @@ public class ScoreResolver : MonoBehaviour
                 OnCorrectFall(domino);
             else OnWrongColor(domino);
         }
-        else OnBadFall();
 
         lastDominoIndex = domino.Index;
 
@@ -144,7 +143,8 @@ public class ScoreResolver : MonoBehaviour
             if(!fallenDominosTags[i])
             {
                 clock = maxTimeBetweenFalls;
-                OnBadFall();
+                if (errors < 3)
+                    OnBadFall();
 
                 Showdown(i);
                 return;
@@ -162,7 +162,18 @@ public class ScoreResolver : MonoBehaviour
 
     private void Showdown(int index)
     {
+        if (!isResolving)
+            return;
         var dominoToShowdown = dominosParent.transform.GetChild(index);
         dominoToShowdown.GetComponent<Rigidbody>().AddTorque(dominoToShowdown.right * showdownTorque);
+        StartCoroutine(ShowdownRoutine(index, dominoToShowdown));
+    }
+    private IEnumerator ShowdownRoutine(int index, Transform dominoToShowdown)
+    {
+        while (!fallenDominosTags[index])
+        {
+            dominoToShowdown.GetComponent<Rigidbody>().AddTorque(dominoToShowdown.right * showdownTorque);
+            yield return null;
+        }
     }
 }
