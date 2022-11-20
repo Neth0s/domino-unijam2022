@@ -644,10 +644,6 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: a42006a336986084d889983c4189ea37, type: 3}
-    - target: {fileID: 2909824025812316067, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3363259193638095695, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -798,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876196931702987660, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_fontSize
-      value: 71.4
+      value: 70.05
       objectReference: {fileID: 0}
     - target: {fileID: 4876196931702987661, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_AnchorMax.y
@@ -826,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876196931830606972, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_fontSize
-      value: 71.4
+      value: 70.05
       objectReference: {fileID: 0}
     - target: {fileID: 4876196931830606973, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_AnchorMax.y
@@ -854,7 +850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876196931911860298, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_fontSize
-      value: 71.4
+      value: 70.05
       objectReference: {fileID: 0}
     - target: {fileID: 4876196931911860299, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_AnchorMax.y
@@ -886,7 +882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876196932295478421, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_fontSize
-      value: 71.4
+      value: 70.05
       objectReference: {fileID: 0}
     - target: {fileID: 4876196932295478422, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_AnchorMax.y
@@ -950,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4876196932432772204, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294901760
+      value: 4294918208
       objectReference: {fileID: 0}
     - target: {fileID: 4876196932432772205, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_AnchorMax.y

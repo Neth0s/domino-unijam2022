@@ -123,7 +123,7 @@ public class ScoreResolver : MonoBehaviour
         score += scoreMultiplier * correctCombo * distanceDelta;
         correctCombo++;
 
-        if (lastDominoFellCorrectly) totalCorrectDistance += distanceDelta;
+        if (lastDominoFellCorrectly) totalCorrectDistance += 0.5f * distanceDelta;
         lastDominoFellCorrectly = true;
     }
 
