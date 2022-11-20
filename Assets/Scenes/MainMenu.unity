@@ -159,10 +159,10 @@ RectTransform:
   m_Father: {fileID: 2090381684}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 333.505, y: -113.9475}
+  m_SizeDelta: {x: 587.01, y: 147.895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34858402
 MonoBehaviour:
@@ -667,12 +667,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 837869446}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 174, y: -202.15}
-  m_SizeDelta: {x: 1639.771, y: 209.046}
+  m_AnchoredPosition: {x: 0, y: -200}
+  m_SizeDelta: {x: 1600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161970135
 MonoBehaviour:
@@ -694,7 +694,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Press \n\nto place a domino of the corresponding color."
+  m_text: Press                            to place a domino of the corresponding
+    color.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec9f003785d38c8439d20b685d1f08d7, type: 2}
   m_sharedMaterial: {fileID: -6366141750360471555, guid: ec9f003785d38c8439d20b685d1f08d7, type: 2}
@@ -786,7 +787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &225554557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -929,10 +930,10 @@ RectTransform:
   m_Father: {fileID: 2090381684}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 333.505, y: -489.73752}
+  m_SizeDelta: {x: 587.01, y: 147.895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348319079
 MonoBehaviour:
@@ -1962,7 +1963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d1671b972fe74641bd201681cde2981, type: 2}
   m_sharedMaterial: {fileID: -6366141750360471555, guid: 6d1671b972fe74641bd201681cde2981, type: 2}
@@ -2028,7 +2029,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &726291196
@@ -2075,10 +2076,10 @@ RectTransform:
   m_Father: {fileID: 2090381684}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 333.505, y: -301.8425}
+  m_SizeDelta: {x: 587.01, y: 147.895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727904539
 MonoBehaviour:
@@ -2320,7 +2321,7 @@ GameObject:
   - component: {fileID: 747509897}
   - component: {fileID: 747509900}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: Play button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2340,7 +2341,7 @@ RectTransform:
   m_Children:
   - {fileID: 726291194}
   m_Father: {fileID: 837869446}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2591,10 +2592,10 @@ RectTransform:
   m_Children:
   - {fileID: 1421372760}
   - {fileID: 503733302}
-  - {fileID: 747509896}
   - {fileID: 1257383038}
   - {fileID: 1171606284}
   - {fileID: 161970134}
+  - {fileID: 747509896}
   m_Father: {fileID: 1905693893}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3347,12 +3348,12 @@ RectTransform:
   - {fileID: 689227668}
   - {fileID: 89570090}
   m_Father: {fileID: 837869446}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -215.06, y: -135}
-  m_SizeDelta: {x: 530.12, y: 119.965}
+  m_AnchoredPosition: {x: -440, y: -135}
+  m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1171606285
 MonoBehaviour:
@@ -3788,12 +3789,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 837869446}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 41.751, y: 121.612}
-  m_SizeDelta: {x: 1612.51, y: 297.517}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 1600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257383039
 MonoBehaviour:
@@ -4961,10 +4962,10 @@ RectTransform:
   m_Father: {fileID: 2090381684}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 333.505, y: -677.6325}
+  m_SizeDelta: {x: 587.01, y: 147.895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707024393
 MonoBehaviour:
