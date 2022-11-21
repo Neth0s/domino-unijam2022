@@ -86,6 +86,8 @@ public class DominoSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale < 1)
+            return;
         currentTimeBetweenDominos += Time.deltaTime;
         if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
         lastPosition = dollyCart.m_Position;
@@ -105,7 +107,7 @@ public class DominoSpawner : MonoBehaviour
 
     private void Spawn(int prefabIndex)
     {
-        if (!SpaceAvailable())
+        if (!SpaceAvailable() || Time.timeScale < 1)
             return;
         if (!dollyCartStarted)
         {

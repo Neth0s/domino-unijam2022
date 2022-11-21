@@ -28,15 +28,28 @@ public class GameManager : MonoBehaviour
 
     private bool gameEnded = false;
     private Fader fader;
+    private Controls controls;
 
     public static GameManager Instance;
-
+    
     private void Awake()
     {
         Debug.Assert(Instance == null);
         Instance = this;
+        controls = controls = new Controls();
     }
 
+    private void OnEnable()
+    {
+        controls.Menu.Enable();
+        controls.Menu.Pause.performed += ctx => TogglePause();
+    }
+
+    private void OnDisable()
+    {
+        controls.Menu.Disable();
+        controls.Menu.Pause.performed += ctx => TogglePause();
+    }
     private void Start()
     {
         fader = FindObjectOfType<Fader>();
@@ -90,5 +103,10 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         fader.TransitionToScene(0);
+    }
+
+    public void TogglePause()
+    {
+        Time.timeScale = 1 - Time.timeScale;
     }
 }
