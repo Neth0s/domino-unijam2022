@@ -3309,6 +3309,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 19fbb12914930c74e9c1334cf8d5e05e, type: 3}
   - sceneId: 3
     sprite: {fileID: 21300000, guid: 3e4a649a23ce6a54e93bbb699d25b280, type: 3}
+  - sceneId: 4
+    sprite: {fileID: 21300000, guid: b4a46ed38102c99488e4090939307334, type: 3}
+  - sceneId: 5
+    sprite: {fileID: 21300000, guid: 1f6c8255e77819346970a8d7cb4cd295, type: 3}
   leftArrow: {fileID: 1641349197}
   rightArrow: {fileID: 1403717249}
   image: {fileID: 1230516012}
