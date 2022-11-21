@@ -111,9 +111,8 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
         Time.timeScale = 1 - Time.timeScale;
-        if (Time.timeScale < 1)
-            pauseMenu.SetActive(true);
-        else
-            pauseMenu.SetActive(false);
+
+        if (Time.timeScale < 1) pauseMenu.SetActive(true);
+        else pauseMenu.SetActive(false);
     }
 }
