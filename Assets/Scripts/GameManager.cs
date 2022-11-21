@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fallMenu;
     [SerializeField] private GameObject constructionMenu;
     [SerializeField] private GameObject path;
+    [SerializeField] private GameObject pauseMenu;
     
     [Header("Next Level")]
     [SerializeField] private int nextLevelIndex = 0;
@@ -107,6 +108,11 @@ public class GameManager : MonoBehaviour
 
     public void TogglePause()
     {
+        if (gameEnded) return;
         Time.timeScale = 1 - Time.timeScale;
+        if (Time.timeScale < 1)
+            pauseMenu.SetActive(true);
+        else
+            pauseMenu.SetActive(false);
     }
 }
