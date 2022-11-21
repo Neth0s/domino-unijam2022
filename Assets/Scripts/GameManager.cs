@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fallMenu;
     [SerializeField] private GameObject constructionMenu;
     [SerializeField] private GameObject path;
-    
+
     [Header("Next Level")]
-    [SerializeField] private int nextLevelIndex = 0;
+    [SerializeField] private bool lastLevel = false;
 
     [Header("End menu")]
     [SerializeField] private EndMenu endMenu;
@@ -84,7 +84,8 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
-        fader.TransitionToScene(nextLevelIndex);
+        if (lastLevel) fader.TransitionToScene(0);
+        else fader.TransitionToScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ReturnToMainMenu()
