@@ -36,11 +36,15 @@ public class PathDrawer : MonoBehaviour
         coefficient = Mathf.Clamp01(coefficient);
 
         Color result = colorCoefs[0].color;
+
         for (int i = 0; i < colorCoefs.Count; i++)
         {
-            result = colorCoefs[i].color;
             coefficient -= colorCoefs[i].coefficient;
-            if (coefficient < 0) break;
+            if (coefficient < 0)
+            {
+                result = colorCoefs[i].color;
+                break;
+            }
 
         }
 

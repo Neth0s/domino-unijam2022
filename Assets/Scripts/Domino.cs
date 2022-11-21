@@ -73,6 +73,7 @@ public class Domino : MonoBehaviour
     public void CheckForColor()
     {
         Color expectedColor = pathDrawer.Evaluate(normalizedDistance);
+
         HasGoodColor = rend.material.color.r == expectedColor.r
                     && rend.material.color.g == expectedColor.g
                     && rend.material.color.b == expectedColor.b;

@@ -133,7 +133,6 @@ public class ScoreResolver : MonoBehaviour
         lastDominoFellCorrectly = false;
 
         DominoCollideDomino.PitchCoefficient = 0;
-        Debug.Log("Wrong color");
     }
 
     private void OnBadFall()

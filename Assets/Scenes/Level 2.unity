@@ -1741,15 +1741,15 @@ PrefabInstance:
       objectReference: {fileID: 4861008313136908990, guid: 90e03c3e95167ed47b7778913d6139e1, type: 3}
     - target: {fileID: 1932646555481180056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: dominoColors.Array.data[0].b
-      value: 0.15294118
+      value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 1932646555481180056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: dominoColors.Array.data[0].g
-      value: 0.3019608
+      value: 0.3137255
       objectReference: {fileID: 0}
     - target: {fileID: 1932646555481180056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: dominoColors.Array.data[0].r
-      value: 0.4627451
+      value: 0.4392157
       objectReference: {fileID: 0}
     - target: {fileID: 2062415545436517090, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_IsActive
@@ -1813,15 +1813,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[0].color.b
-      value: 0.15294118
+      value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[0].color.g
-      value: 0.3019608
+      value: 0.3137255
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[0].color.r
-      value: 0.4627451
+      value: 0.4392157
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[1].color.a
@@ -1845,15 +1845,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[2].color.b
-      value: 0.15294118
+      value: 0.1254902
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[2].color.g
-      value: 0.3019608
+      value: 0.3137255
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[2].color.r
-      value: 0.4627451
+      value: 0.4392157
       objectReference: {fileID: 0}
     - target: {fileID: 3675498087106151813, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: colorCoefs.Array.data[0].coefficient
