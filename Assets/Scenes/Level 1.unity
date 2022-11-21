@@ -1208,6 +1208,10 @@ PrefabInstance:
       propertyPath: m_Waypoints.Array.data[4].position.z
       value: 0.12055349
       objectReference: {fileID: 0}
+    - target: {fileID: 6674188976564928965, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
+      propertyPath: nextLevelIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6674188976870532097, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -1307,6 +1311,10 @@ PrefabInstance:
     - target: {fileID: 6674188977354005056, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.18673773
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674188977354005057, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
+      propertyPath: near clip plane
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6674188977370025258, guid: c2c63afcb961f434db3c518127fa5b18, type: 3}
       propertyPath: m_RootOrder
