@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.InputSystem;
+
 public class DominoSpawner : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
@@ -12,6 +14,7 @@ public class DominoSpawner : MonoBehaviour
     [Header("Shadow")]
     [SerializeField] private BoxCollider shadowCollider;
     [SerializeField] private BoxCollider longShadowCollider;
+
     [Header("Dominos")]
     [SerializeField] private List<GameObject> dominoPrefabs;
     [SerializeField] private List<GameObject> longDominoPrefabs;
@@ -28,7 +31,7 @@ public class DominoSpawner : MonoBehaviour
 
     private int dominoIndex = 0;
     private float lastPosition = -1;
-    private float currentTimeBetweenDominos = Mathf.Infinity;
+    private float timeSinceLastDomino = Mathf.Infinity;
     private int dominosRemaining = 0;
     private bool dollyCartStarted = false;
 
@@ -36,9 +39,7 @@ public class DominoSpawner : MonoBehaviour
     private List<float> distances;
     private List<int> colors;
 
-    CinemachineDollyCart dollyCart;
-
-
+    private CinemachineDollyCart dollyCart;
     private MeshRenderer shadowMeshRenderer;
     private MeshRenderer longShadowMeshRenderer;
     private Material shadowMaterial;
@@ -46,9 +47,11 @@ public class DominoSpawner : MonoBehaviour
     private void Awake()
     {
         for (int i = 0; i < dominosCounts.Count; i++) dominosRemaining += dominosCounts[i];
+        
         dollyCart = GetComponent<CinemachineDollyCart>();
         shadowMeshRenderer = shadowCollider.GetComponent<MeshRenderer>();
         longShadowMeshRenderer = longShadowCollider.GetComponent<MeshRenderer>();
+        
         shadowMaterial = shadowMeshRenderer.material;
     }
 
@@ -69,63 +72,69 @@ public class DominoSpawner : MonoBehaviour
 
         controls = new Controls();
         controls.Player.Enable();
-        controls.Player.PlaceColor1.performed += ctx => Spawn(0);
-        controls.Player.PlaceColor2.performed += ctx => Spawn(1);
-        controls.Player.PlaceColor3.performed += ctx => Spawn(2);
-        controls.Player.PlaceColor4.performed += ctx => Spawn(3);
+        controls.Player.PlaceColor1.performed += Spawn0;
+        controls.Player.PlaceColor2.performed += Spawn1;
+        controls.Player.PlaceColor3.performed += Spawn2;
+        controls.Player.PlaceColor4.performed += Spawn3;
     }
 
     private void OnDisable()
     {
         controls.Player.Disable();
-        controls.Player.PlaceColor1.performed -= ctx => Spawn(0);
-        controls.Player.PlaceColor2.performed -= ctx => Spawn(1);
-        controls.Player.PlaceColor3.performed -= ctx => Spawn(2);
-        controls.Player.PlaceColor4.performed -= ctx => Spawn(3);
+        controls.Player.PlaceColor1.performed -= Spawn0;
+        controls.Player.PlaceColor2.performed -= Spawn1;
+        controls.Player.PlaceColor3.performed -= Spawn2;
+        controls.Player.PlaceColor4.performed -= Spawn3;
     }
 
     private void Update()
     {
-        if (Time.timeScale < 1)
-            return;
-        currentTimeBetweenDominos += Time.deltaTime;
+        if (Time.timeScale < 1) return;
         if (dollyCartStarted && (lastPosition == dollyCart.m_Position)) PlacingPhaseFinished();
+        
+        timeSinceLastDomino += Time.deltaTime;
         lastPosition = dollyCart.m_Position;
-        shadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
-        longShadowMeshRenderer.material = SpaceAvailable() ? shadowMaterial : shadowRedMaterial;
-        if (controls.Player.LongDomino.ReadValue<float>() > 0)
-        {
-            shadowCollider.gameObject.SetActive(false);
-            longShadowCollider.gameObject.SetActive(true);
-        }
-        else
-        {
-            shadowCollider.gameObject.SetActive(true);
-            longShadowCollider.gameObject.SetActive(false);
-        }
+
+        bool longKeyPressed = controls.Player.LongDomino.ReadValue<float>() > 0;
+        
+        shadowCollider.gameObject.SetActive(!longKeyPressed);
+        longShadowCollider.gameObject.SetActive(longKeyPressed);
     }
+
+    private void FixedUpdate()
+    {
+        bool spaceAvailable = SpaceAvailable();
+
+        shadowMeshRenderer.material = spaceAvailable ? shadowMaterial : shadowRedMaterial;
+        longShadowMeshRenderer.material = spaceAvailable ? shadowMaterial : shadowRedMaterial;
+    }
+
+
+    private void Spawn0(InputAction.CallbackContext ctx) => Spawn(0);
+    private void Spawn1(InputAction.CallbackContext ctx) => Spawn(1);
+    private void Spawn2(InputAction.CallbackContext ctx) => Spawn(2);
+    private void Spawn3(InputAction.CallbackContext ctx) => Spawn(3);
 
     private void Spawn(int prefabIndex)
     {
-        if (!SpaceAvailable() || Time.timeScale < 1)
-            return;
+        if (!SpaceAvailable() || Time.timeScale < 1) return;
+        if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0) return;
+
         if (!dollyCartStarted)
         {
             dollyCartStarted = true;
             dollyCart.m_Speed = speed;
         }
-        if (dominosCounts.Count <= prefabIndex || dominosCounts[prefabIndex] <= 0) return;
 
-        if (currentTimeBetweenDominos > minTimeBetweenDominos)
+        if (timeSinceLastDomino > minTimeBetweenDominos)
         {
-            bool longDomino = false;
-            if (controls.Player.LongDomino.ReadValue<float>() > 0 && dominosCounts[prefabIndex] >= 2)
-                longDomino = true;
+            bool longDomino = (controls.Player.LongDomino.ReadValue<float>() > 0 && dominosCounts[prefabIndex] >= 2);
             var dominoInstance = Instantiate(longDomino ? longDominoPrefabs[prefabIndex] : dominoPrefabs[prefabIndex], spawnPoint.position + spawnOffset, spawnPoint.rotation, dominosParent.transform);
             
-            currentTimeBetweenDominos = 0;
+            timeSinceLastDomino = 0;
             dominosCounts[prefabIndex] -= longDomino ? 2 : 1;
             dominosRemaining -= longDomino ? 2 : 1;
+
             distances.Add(dollyCart.m_Position);
             colors.Add(prefabIndex);
             
@@ -141,30 +150,23 @@ public class DominoSpawner : MonoBehaviour
         
         if (dominosRemaining <= 0) PlacingPhaseFinished();
     }
+
+
     private bool SpaceAvailable()
     {
         Collider[] hitColliders;
-        if (controls.Player.LongDomino.ReadValue<float>() > 0)
+        BoxCollider collider;
+
+        if (controls.Player.LongDomino.ReadValue<float>() > 0) collider = longShadowCollider;
+        else collider = shadowCollider;
+
+        hitColliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, transform.rotation);
+
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            hitColliders = Physics.OverlapBox(longShadowCollider.bounds.center, longShadowCollider.bounds.extents, transform.rotation);
-            for (int i = 0; i < hitColliders.Length; i++)
-            {
-                if (hitColliders[i].gameObject != longShadowCollider.gameObject && hitColliders[i].gameObject.tag != "IgnoreSound")
-                {
-                    return false;
-                }
-            }
-        }
-        else
-        {
-            hitColliders = Physics.OverlapBox(shadowCollider.bounds.center, shadowCollider.bounds.extents, transform.rotation);
-            for (int i = 0; i < hitColliders.Length; i++)
-            {
-                if (hitColliders[i].gameObject != shadowCollider.gameObject && hitColliders[i].gameObject.tag != "IgnoreSound")
-                {
-                    return false;
-                }
-            }
+            if (hitColliders[i].gameObject != collider.gameObject &&
+                !hitColliders[i].gameObject.CompareTag("IgnoreSound"))
+                return false;
         }
         
         return true;
