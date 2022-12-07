@@ -79,10 +79,19 @@ public class GameManager : MonoBehaviour
     private IEnumerator ShowEndMenuRoutine(int expressionIndex)
     {
         yield return new WaitForSeconds(.1f);
-        
+
+        int score = (int) Mathf.Round(scoreResolver.Score);
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int lastScore = PlayerPrefs.GetInt("level" + currentLevel, 0);
+
+        if (score > lastScore)
+        {
+            PlayerPrefs.SetInt("level" + currentLevel, score);
+        }
+
         endMenu.gameObject.SetActive(true);
         endMenu.ShowResult(expressionIndex);
-        endMenuScore.SetText("Dorothy's happiness: " + (int)scoreResolver.Score);
+        endMenuScore.SetText("Dorothy's happiness: " + score);
         endMenuDistance.SetText("You made " + scoreResolver.TotalDistance.ToString("0.00") + "m of dominos!");
         
         audioSource.clip = audioClips[expressionIndex];

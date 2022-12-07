@@ -99,21 +99,16 @@ public class ScoreResolver : MonoBehaviour
         lastDominoIndex = domino.Index;
         lastDominoDistance = domino.Distance;
 
-        girlExpressionImage.sprite = faceExpressions[getExpressionIndex()];
+        girlExpressionImage.sprite = faceExpressions[GetExpressionIndex()];
     }
 
-    private int getExpressionIndex()
+    private int GetExpressionIndex()
     {
-        if (score < expressionThreshold.x)
-            return 0;
-        else if (score < expressionThreshold.y)
-            return 1;
-        else if (score < expressionThreshold.z)
-            return 2;
-        else if (score < expressionThreshold.w)
-            return 3;
-        else
-            return 4;
+        if (score < expressionThreshold.x) return 0;
+        else if (score < expressionThreshold.y) return 1;
+        else if (score < expressionThreshold.z) return 2;
+        else if (score < expressionThreshold.w) return 3;
+        else return 4;
     }
 
     private void OnCorrectFall(Domino domino)
@@ -168,7 +163,7 @@ public class ScoreResolver : MonoBehaviour
     private void StopScoreResolution()
     {
         isResolving = false;
-        GameManager.Instance.ShowEndMenu(getExpressionIndex());
+        GameManager.Instance.ShowEndMenu(GetExpressionIndex());
     }
 
     private void Showdown(int index)

@@ -1,27 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Level
-{
-    public int sceneId;
-    public Sprite sprite;
-}
-
 public class MainMenu : MonoBehaviour
 {
-    Fader fader;
-    [SerializeField] private List<Level> levels;
+    [SerializeField] private List<Sprite> levels;
     [SerializeField] private GameObject leftArrow;
     [SerializeField] private GameObject rightArrow;
     [SerializeField] private Image image;
-    private int currentLevelId = 0;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    private int currentLevel = 0;
+    private int[] scores;
+
+    private Fader fader;
+
     private void Start()
     {
+        scores = new int[levels.Count];
+        UpdateScores();
+
         fader = FindObjectOfType<Fader>();
         fader.FadeIn();
+    }
+
+    private void UpdateScores()
+    {
+        for (int i = 0; i < scores.Length; i++)
+        {
+            scores[i] = PlayerPrefs.GetInt("level" + (i + 1).ToString(), 0);
+        }
     }
 
     public void TransitionToScene(int id)
@@ -36,32 +46,38 @@ public class MainMenu : MonoBehaviour
 
     public void OpenLevelSelect()
     {
-        currentLevelId = 0;
+        currentLevel = 0;
         leftArrow.SetActive(false);
         UpdateUI();
     }
 
     public void ChangeLevel(int diff)
     {
-        currentLevelId += diff;
+        currentLevel += diff;
         UpdateUI();
     }
 
     public void UpdateUI()
     {
-        if (currentLevelId == 0)
-            leftArrow.SetActive(false);
-        else
-            leftArrow.SetActive(true);
-        if (currentLevelId >= levels.Count - 1)
-            rightArrow.SetActive(false);
-        else
-            rightArrow.SetActive(true);
-        image.sprite = levels[currentLevelId].sprite;
+        if (currentLevel == 0) leftArrow.SetActive(false);
+        else leftArrow.SetActive(true);
+
+        if (currentLevel >= levels.Count - 1) rightArrow.SetActive(false);
+        else rightArrow.SetActive(true);
+
+        image.sprite = levels[currentLevel];
+        scoreText.text = "Best: " + scores[currentLevel].ToString();
     }
 
     public void PlaySelectedLevel()
     {
-        fader.TransitionToScene(levels[currentLevelId].sceneId);
+        fader.TransitionToScene(currentLevel + 1);
+    }
+
+    public void ResetScores()
+    {
+        PlayerPrefs.DeleteAll();
+        UpdateScores();
+        UpdateUI();
     }
 }
